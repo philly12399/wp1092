@@ -1,25 +1,23 @@
-*{
+* {
   padding: 0;
-  margin:0;
-/*   outline: 1px solid #000; */
-/*   border: 1px solid black; */
+  margin: 0;
+  /*   outline: 1px solid #000; */
+  /*   border: 1px solid black; */
 }
 
-body{
+body {
   background: rgb(71, 71, 70);
 }
 
-.rectangle{
+.rectangle {
   background: #f00;
   width: 150px;
   height: 50px;
   border-radius: 10% 10% 0 0;
-position: absolute;
+  position: absolute;
   bottom: 0px;
   left: -25px;
 }
-
-
 
 .square3 {
   background: rgb(255, 255, 255);
@@ -27,167 +25,176 @@ position: absolute;
   width: 600px;
   height: 900px;
   border-radius: 10% 10% 10% 10%;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  margin: auto; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 .square2 {
-    background:rgb(0, 0, 0);
+  background: rgb(0, 0, 0);
   position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 20% 20% 20% 20%;
-    top:0;
-    left:0;
-    right:0;
-    bottom:430px;
-    margin: auto; 
-  }
+  width: 400px;
+  height: 400px;
+  border-radius: 20% 20% 20% 20%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 430px;
+  margin: auto;
+}
 
-
-.circle{
+.circle {
   background: rgb(240, 0, 0);
   width: 100px;
   height: 100px;
   border-radius: 50%;
-   position: absolute;
+  position: absolute;
 }
 
-.circle1{
+.circle1 {
   bottom: 180px;
   left: 50px;
 }
- .circle2{
- bottom: 180px;  
-   left: 250px;
+.circle2 {
+  bottom: 180px;
+  left: 250px;
 }
-.circle3{
-    bottom: 180px;  
-      left: 450px;
+.circle3 {
+  bottom: 180px;
+  left: 450px;
 }
-.tri{border-color: transparent transparent transparent #000;}
-.tri1{
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 25px 43.3px 25px 0;
-    border-color: transparent #000 transparent transparent;
+.tri {
+  border-color: transparent transparent transparent #000;
 }
-.t1{position: relative;
-    bottom: -25px;
-    left: 10px;
+.tri1 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 43.3px 25px 0;
+  border-color: transparent #000 transparent transparent;
 }
-.t2{position: relative;
-    bottom: 25px;
-    left: 40px;
+.t1 {
+  position: relative;
+  bottom: -25px;
+  left: 10px;
 }
-.tri2{
-    border-style: solid;
-    border-width: 35px 0 35px 60.6px;
-    
-    bottom: -15px;
-    left: 30px;
-    position: relative;
+.t2 {
+  position: relative;
+  bottom: 25px;
+  left: 40px;
 }
-.tri3{
-    width: 0;
-    height: 0;
-border-style: solid;
-border-width: 25px 0 25px 43.3px;
-border-color: transparent transparent transparent #000;
-}
-.t3{position: relative;
-    bottom: -25px;
-    left: 20px;
-}
-.t4{position: relative;
-    bottom: 25px;
-    left: 50px;
-}
-.rect1{
-    background: rgb(0, 0, 0);
-    width: 450px;
-    height: 10px;
-    border-radius: 10% 10% 0 0;
-  position: absolute;
-    bottom: 350px;
-    left: 80px;
-  }
-  .rect2{
-    border-color:  rgb(240, 0, 0);
-    border-width:3px;
-    border-style:solid;padding:5px;
-    width: 380px;
-    height: 50px;
-    border-radius: 0% 0% 0 0;
-  position: absolute;
-    bottom: 380px;
-    left: 100px;
-  }
-  .img{ position: absolute;
-    bottom: 50px;
-    left: 50px;}
-    
-.cur1{
-    background: rgb(240, 0, 0);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    bottom: -10px;
-    left:280px;
-     position: absolute;}
-     .rect3{
-        background: rgb(0, 0, 0);
-        width: 350px;
-        height: 10px;
-        border-radius: 10% 10% 0 0;
-      position: absolute;
-        bottom: 150px;
-        left: 130px;
-      }
-     .cur2{
-        background: rgb(240, 0, 0);
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        bottom: -10px;
-        left:150px;
-         position: absolute;}
-    .v1{
-        background: rgb(0, 0, 0);
-        width: 30px;
-        height: 5px;
-        border-radius: 0% 0% 0 0;
-      position: absolute;
-        bottom: 0px;
-        left: -60px;
-    }
-    .v2{
-        background: rgb(0, 0, 0);
-        width: 30px;
-        height: 5px;
-        border-radius: 0% 0% 0 0;
-      position: absolute;
-        bottom: 0px;
-        left: 380px;
-    }
-    .v22{
-        background: rgb(0, 0, 0);
-        width: 5px;
-        height: 30px;
-        border-radius: 0% 0% 0 0;
-      position: absolute;
-        bottom: -12.5px;
-        left: 12.5px;
-    }
-    .rect4{
+.tri2 {
+  border-style: solid;
+  border-width: 35px 0 35px 60.6px;
 
-        width: 150px;
-        height: 30px;
-        border-radius: 0% 0% 0 0;
-      position: absolute;
-        bottom: 300px;
-        left: 400px;
-      }
+  bottom: -15px;
+  left: 30px;
+  position: relative;
+}
+.tri3 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 43.3px;
+  border-color: transparent transparent transparent #000;
+}
+.t3 {
+  position: relative;
+  bottom: -25px;
+  left: 20px;
+}
+.t4 {
+  position: relative;
+  bottom: 25px;
+  left: 50px;
+}
+.rect1 {
+  background: rgb(0, 0, 0);
+  width: 450px;
+  height: 10px;
+  border-radius: 10% 10% 0 0;
+  position: absolute;
+  bottom: 350px;
+  left: 80px;
+}
+.rect2 {
+  border-color: rgb(240, 0, 0);
+  border-width: 3px;
+  border-style: solid;
+  padding: 5px;
+  width: 380px;
+  height: 50px;
+  border-radius: 0% 0% 0 0;
+  position: absolute;
+  bottom: 380px;
+  left: 100px;
+}
+.img {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+
+.cur1 {
+  background: rgb(240, 0, 0);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  bottom: -10px;
+  left: 280px;
+  position: absolute;
+}
+.rect3 {
+  background: rgb(0, 0, 0);
+  width: 350px;
+  height: 10px;
+  border-radius: 10% 10% 0 0;
+  position: absolute;
+  bottom: 150px;
+  left: 130px;
+}
+.cur2 {
+  background: rgb(240, 0, 0);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  bottom: -10px;
+  left: 150px;
+  position: absolute;
+}
+.v1 {
+  background: rgb(0, 0, 0);
+  width: 30px;
+  height: 5px;
+  border-radius: 0% 0% 0 0;
+  position: absolute;
+  bottom: 0px;
+  left: -60px;
+}
+.v2 {
+  background: rgb(0, 0, 0);
+  width: 30px;
+  height: 5px;
+  border-radius: 0% 0% 0 0;
+  position: absolute;
+  bottom: 0px;
+  left: 380px;
+}
+.v22 {
+  background: rgb(0, 0, 0);
+  width: 5px;
+  height: 30px;
+  border-radius: 0% 0% 0 0;
+  position: absolute;
+  bottom: -12.5px;
+  left: 12.5px;
+}
+.rect4 {
+  width: 150px;
+  height: 30px;
+  border-radius: 0% 0% 0 0;
+  position: absolute;
+  bottom: 300px;
+  left: 400px;
+}
