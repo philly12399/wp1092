@@ -1,0 +1,89 @@
+body {
+    background: -webkit-linear-gradient(0deg, rgb(40, 40, 40) 20%, rgb(80, 80, 80));
+    background: linear-gradient(0deg, rgb(40, 40, 40) 20%, rgb(80, 80, 80));
+    min-height: 100vh;
+    line-height: 1 !important;
+}
+
+p {
+    color: white;
+}
+
+.music-player {
+    background-color: black;
+    box-shadow: 0px 0px 1rem black;
+    -webkit-box-shadow: 0px 0px 1rem black;
+    display: block;
+    position: fixed;
+    top: 5vh;
+    left: 30vw;
+    height: 70vh;
+    width: 40vw;
+    border-radius: 1rem;
+}
+
+.music-player:hover {
+    background-color: gray;
+}
+
+.song-picture {
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.song-picture > img {
+    max-height: 50vh;
+    width: 30vw;
+    border-radius: 1rem;
+}
+
+.song-info {
+    text-align: center;
+    font-family: "Dancing Script", cursive;
+}
+
+.song-info > .song-name {
+    font-size: 7vmin;
+}
+
+.song-info > .singer-name {
+    font-size: 4vmin;
+    color: gray;
+}
+
+.box-btn {
+    float: left;
+    background: transparent;
+    font-size: 8vmin;
+    color: #4d4e56;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 0.5;
+    border: none;
+    outline: none;
+}
+
+.glyphicon {
+    transition: color 0.3s linear;
+}
+
+.box-btn .red {
+    color: red;
+}
+
+.footer {
+    position: absolute;
+    top: 82vh;
+    left: 50vw;
+    margin-right: -50vw;
+    transform: translate(-50%, -50%);
+}
+
+.footer > img {
+    height: 8vmin;
+    margin-right: 1vmin;
+    margin-left: 1vmin;
+}
