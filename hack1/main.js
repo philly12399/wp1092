@@ -21,7 +21,7 @@ input.addEventListener('input',(e)=>{
     }
 })
 combut.onclick=()=>{
-    add_comment(input.value);
+    add_comment(input.value.trim().replace(/ /g, '\u00A0'));
     cnt++;
     comnum.textContent = cnt+"則留言";
     input.value="";
@@ -36,6 +36,7 @@ canbut.onclick=()=>{
 }
 var comgrp = document.getElementById("comment-group");
 var add_comment =(t)=>{
+    console.log(t);
     var a0 = comgrp.firstElementChild;
     var a1 = a0.cloneNode(true);
     var t0=a1.querySelector(".comment-text");
