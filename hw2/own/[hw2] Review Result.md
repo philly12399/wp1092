@@ -14,8 +14,8 @@ WP109-2 HW2 Review Result
 
 ## Reviewer 2
 - 作業完成情況
-	- 完美 (Perfect, 題目的基本與進階要求完全都有做到)
+	- 不符合作業要求 (No Good, 大部分功能沒有做，或者根本是交屍體)
 
 - 簡單評論
-	- 有多做一些implementation讚 可惜button disable的位置怪怪的 可能有小bug 但還是給完美
+	- 不能把圖片放在 local 端吧？浪費我的儲存空間 = = 統粉跟動粉都下去
 
