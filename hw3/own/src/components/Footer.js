@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+var clr = ["", "", ""];
+var s1 = "rgb(243, 153, 150)";
 class TodoFooter extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,39 @@ class TodoFooter extends Component {
       >
         <div class="todo-app__total">{this.props.todoNum} left</div>
         <ul class="todo-app__view-buttons">
-          <button onClick={() => this.handleFilter("ALL")}>All</button>
-          <button onClick={() => this.handleFilter("ACT")}>Active</button>
-          <button onClick={() => this.handleFilter("COMP")}>Completed</button>
+          <button
+            style={{ backgroundColor: clr[0] }}
+            onClick={() => {
+              this.handleFilter("ALL");
+              clr[0] = s1;
+              clr[1] = "";
+              clr[2] = "";
+            }}
+          >
+            All
+          </button>
+          <button
+            style={{ backgroundColor: clr[1] }}
+            onClick={() => {
+              this.handleFilter("ACT");
+              clr[0] = "";
+              clr[1] = s1;
+              clr[2] = "";
+            }}
+          >
+            Active
+          </button>
+          <button
+            style={{ backgroundColor: clr[2] }}
+            onClick={() => {
+              this.handleFilter("COMP");
+              clr[0] = "";
+              clr[1] = "";
+              clr[2] = s1;
+            }}
+          >
+            Completed
+          </button>
         </ul>
         <div class="todo-app__clean">
           <button style={{ display: hideb }} onClick={() => this.handleClear()}>
