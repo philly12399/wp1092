@@ -24,8 +24,7 @@ class Table extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = { row_num: 5, col_num: 1, cList: [],fcs:[-1,-1],flag:0};
-    this.btn_clk=false;
+    this.state = { row_num: 5, col_num: 5, cList: [],fcs:[-1,-1],flag:0};
     this.cell = class cell {
       constructor(i, j) {
         this.clk = 0;
@@ -50,12 +49,12 @@ class Table extends Component {
     console.log("blr");
     this.state.fcs=[-1,-1];
     this.state.cList[i][j].clk = 0;
-    this.btn_clk= false;
     this.setState((state)=>({flag:state.flag+1}));
   }
   cell_clk=(i,j)=>{
     if(this.state.cList[i][j].clk === 0){
       this.setState((state) => ({ fcs:[i,j] }));
+
       let s=this.ij2id(i,j);
      // console.log("First:"+s);
       this.state.cList[i][j].clk = 1;
@@ -77,8 +76,6 @@ class Table extends Component {
     this.state.cList[tar_i][tar_j].content = this.state.cList[src_i][src_j].content;
   }
   add_col=(fcs)=>{
-    this.btn_clk=true;
-    console.log("msdown");
     if(fcs[1] === -1){
       fcs=[0,this.state.col_num-1];
       for (let i = 0; i < this.state.row_num; i++) {
@@ -100,7 +97,6 @@ class Table extends Component {
     this.setState((state)=>({col_num:state.col_num+1}));
   }
   add_row=(fcs)=>{
-    this.btn_clk=true;
     if(fcs[0] === -1){
       fcs=[this.state.row_num-1,0];
       var new_row=[];
@@ -130,7 +126,6 @@ class Table extends Component {
     
   }
   del_col=(fcs)=>{
-    this.btn_clk=true;
     if(fcs[1]!==-1){
       for (let i = 0; i < this.state.row_num; i++) {
         for(let j=fcs[1]; j<this.state.col_num-1;j++){
@@ -142,9 +137,17 @@ class Table extends Component {
       this.setState((state)=>({col_num:state.col_num-1}));
     }
   }
-  del_row=(fc)=>{
-    this.btn_clk=true;
-    //if(fcs[0]!==-1)
+  del_row=(fcs)=>{
+    if(fcs[0]!==-1){
+        for(let i=fcs[0]; i<this.state.row_num-1;i++){
+          for(let j=0;j<this.state.col_num;j++){
+            this.pass_cell(i+1,j,i,j);
+          }
+        }
+        this.state.cList.splice(this.state.row_num-1, 1);;
+      this.state.fcs=[-1,-1];
+      this.setState((state)=>({row_num:state.row_num-1}));
+    }
   }
 
   componentDidUpdate(){
@@ -158,8 +161,8 @@ class Table extends Component {
     var rows = [];
     var table = [];
     var arow = [];
-    for (let i = 0; i < this.state.col_num; i++)
-      arow=arow.concat((<th>{Table.col_id2str(i)}</th>));
+    for (let j = 0; j < this.state.col_num; j++)
+      arow=arow.concat((<th class={(j===this.state.fcs[1])? "fcs":""}>{Table.col_id2str(j)}</th>));
     rows = rows.concat([arow]);
     
     for (let i = 0; i < this.state.row_num; i++) {
@@ -184,7 +187,7 @@ class Table extends Component {
         <button id="rp" onMouseDown={()=>{this.add_row(this.state.fcs)}}>+</button>
         <button id="rm" onMouseDown={()=>{this.del_row(this.state.fcs)}}>-</button>
         <table >
-        {rows.map((e,index)=>{return <tr><th>{(index===0)? "":index}</th>{e}</tr>})}          
+        {rows.map((e,index)=>{return <tr><th class={((index===this.state.fcs[0]+1)&&index!==0)? "fcs":""}>{(index===0)? "":index}</th>{e}</tr>})}          
         </table>
       </header >
     );

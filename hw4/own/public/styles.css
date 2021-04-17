@@ -43,12 +43,12 @@ button#rm{
 th{ 
     background-color: #e9e2e2;
     border:2px solid  rgb(114, 113, 113);
-    height:30px;
-    width:150px;
+    min-height:50px;
+    min-width:30px;
     padding: none;
     overflow: hidden;
 } 
-th.foc{ 
+th.fcs{ 
     background-color: #535252;
 } 
 input{ 
@@ -59,8 +59,7 @@ input{
     outline: none;
     padding: none;
 }
-td{ 
-    
+td{  
     border:2px solid rgb(114, 113, 113);
     width:150px;
     height:30px;
