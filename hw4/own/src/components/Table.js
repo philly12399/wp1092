@@ -33,6 +33,7 @@ class Table extends Component {
         this.content = "";
       }
     };
+    this.e_flag=true;
     for (let i = 0; i < this.state.row_num; i++) {
       this.state.cList.push([]);
       for (let j = 0; j < this.state.col_num; j++) {
@@ -47,14 +48,14 @@ class Table extends Component {
   }
   cell_blur=(i,j)=>{
     console.log("blr");
-    this.state.fcs=[-1,-1];
+    if(this.e_flag) this.state.fcs=[-1,-1];
+    this.e_flag=true;
     this.state.cList[i][j].clk = 0;
     this.setState((state)=>({flag:state.flag+1}));
   }
   cell_clk=(i,j)=>{
     if(this.state.cList[i][j].clk === 0){
       this.setState((state) => ({ fcs:[i,j] }));
-
       let s=this.ij2id(i,j);
      // console.log("First:"+s);
       this.state.cList[i][j].clk = 1;
@@ -71,6 +72,30 @@ class Table extends Component {
     //console.log(s+":"+fcs_in.value);
     this.state.cList[i][j].content=fcs_in.value;
     this.setState((state)=>({flag:state.flag+1 }))
+  }
+  cell_key=(i,j,e)=>{
+    if(e.key==="Enter"){
+      console.log("ae");
+      this.e_flag=false;
+      var ni=Math.min(i+1,this.state.row_num);
+      this.state.fcs=[ni,j]
+      document.getElementById(this.ij2id(ni,j)).focus();
+      this.state.cList[ni][j].clk = 1;
+      return;
+    }
+    if(this.state.cList[i][j].clk === 1){
+      if(e.key==="backspace"||e.key==="delete" ){
+        this.state.cList[i][j].content = "";
+        document.getElementById(this.ij2id(i,j)).value="";
+        this.state.cList[i][j].clk = 2;
+      }
+      else{
+        this.state.cList[i][j].content = e.key;
+        //document.getElementById(this.ij2id(i,j)).value=e.key;
+        this.state.cList[i][j].clk = 2;
+      }
+      this.setState((state)=>({flag:state.flag+1 })); 
+    }   
   }
   pass_cell=(src_i,src_j,tar_i,tar_j)=>{
     this.state.cList[tar_i][tar_j].content = this.state.cList[src_i][src_j].content;
@@ -172,7 +197,7 @@ class Table extends Component {
           <td >
             <input type="text" id={s} value={this.state.cList[i][index].content}
             onClick={(e)=>{this.cell_clk(i,index)}}  onBlur={()=>{this.cell_blur(i,index)}}
-            onChange={(e)=>{this.cell_change(i,index)}}
+            onChange={(e)=>{this.cell_change(i,index,e)}} onKeyUp={(e)=>{this.cell_key(i,index,e)}} 
              />
           </td>
         );
