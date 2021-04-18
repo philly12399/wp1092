@@ -108,7 +108,7 @@ class Table extends Component {
       this.e_flag=false;
       var fcs_in = document.getElementById(this.ij2id(i,j));
       this.state.cList[i][j].content=fcs_in.value;
-      var ni=Math.min(i+1,this.state.row_num);
+      var ni=Math.min(i+1,this.state.row_num-1);
       this.state.fcs=[ni,j]
       document.getElementById(this.ij2id(ni,j)).focus();
       this.state.cList[ni][j].clk = 1;
@@ -208,8 +208,12 @@ class Table extends Component {
     for(let i=src_i;i<=tar_i;i++){
       for(let j=src_j;j<=tar_j;j++){
         if(this.state.cList[i][j].content ==="") continue;
-        if(!this.isNumeric(this.state.cList[i][j].content)) return false;
-        sum+=parseFloat(this.state.cList[i][j].content);
+        if(this.state.cList[i][j].isFunc)  sum+=parseFloat(this.state.cList[i][j].FuncValue);
+        else{
+          if(!this.isNumeric(this.state.cList[i][j].content)) return false;
+          sum+=parseFloat(this.state.cList[i][j].content);
+        }
+       
       }
     }
     return sum;
@@ -236,13 +240,54 @@ class Table extends Component {
           in_str=in_str.slice(1,in_str.length-1).split(":");        
           if(in_str.length == 2){                 
             var c1=this.id2ij(in_str[0]),c2=this.id2ij(in_str[1]);
-            if(c1[0]!==-1&&c1[1]!==-1){
+            if(c1[0]!==-1&&c2[0]!==-1){
               var x=this.sum_cells(c1[0],c1[1],c2[0],c2[1]);
               if(x!==false){
                 console.log("c");
                 this.state.cList[i][j].FuncErr=false;
                 this.state.cList[i][j].FuncValue=x;
               }
+            }
+          }
+        }
+      }
+      else if(this.id2ij(new_str)[0]!==-1){
+        var src=this.id2ij(new_str);
+        this.state.cList[i][j].FuncErr=false;
+        this.state.cList[i][j].FuncType="refer";
+        this.state.cList[i][j].FuncValue=this.get_cell_value(src[0],src[1]);
+      }
+      else if(new_str.includes("+")||new_str.includes("-")){
+        var sign="?";
+        if(new_str.includes("+")) sign="+";
+        else if(new_str.includes("-")) sign="-";
+        var in_str=new_str.split(sign);        
+        if(in_str.length == 2){                 
+          var c=[this.id2ij(in_str[0]),this.id2ij(in_str[1])];
+          var v=[NaN,NaN];
+          for(let l=0;l<2;l++){
+            if(c[l][0]===-1){
+              if(in_str[l]===""){
+                v[l]=0;
+              }
+              else if(this.isNumeric(in_str[l])){
+                v[l]=parseFloat(in_str[l]);
+              }
+            }else{
+              v[l]=this.get_cell_value(c[l][0],c[l][1]);
+            }
+          }
+          if(!isNaN(v[0]) && !isNaN(v[1])){
+            
+            if(sign==="+"){
+              this.state.cList[i][j].FuncErr=false;
+              this.state.cList[i][j].FuncType="plus";
+              this.state.cList[i][j].FuncValue=parseFloat(v[0])+parseFloat(v[1]);
+            }
+            else if(sign==="+"){
+              this.state.cList[i][j].FuncErr=false;
+              this.state.cList[i][j].FuncType="minus";
+              this.state.cList[i][j].FuncValue=parseFloat(v[0])-parseFloat(v[1]);
             }
           }
         }
