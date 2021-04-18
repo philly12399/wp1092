@@ -28,13 +28,11 @@ class Table extends Component {
     this.cell = class cell {
       constructor(i, j) {
         this.clk = 0;
-        this.c_i = i;
-        this.c_j = j;
         this.isFunc=false;
         this.FuncType=false;
         this.FuncErr=false;
         this.FuncValue=0;
-        this.isNum=false;
+        this.FuncRef=[[-1,-1],[-1,-1]];
         this.content = "";
       }
     };
@@ -82,7 +80,8 @@ class Table extends Component {
   }
   cell_blur=(i,j)=>{
     var fcs_in = document.getElementById(this.ij2id(i,j));
-    this.state.cList[i][j].content=fcs_in.value;
+    if(!this.state.cList[i][j].isFunc)
+      this.state.cList[i][j].content=fcs_in.value;
     if(this.e_flag) this.state.fcs=[-1,-1];
     this.e_flag=true;
     this.state.cList[i][j].clk = 0;
@@ -107,6 +106,7 @@ class Table extends Component {
     if(e.key==="Enter"){
       this.e_flag=false;
       var fcs_in = document.getElementById(this.ij2id(i,j));
+      if(this.state.cList[i][j].clk==2)
       this.state.cList[i][j].content=fcs_in.value;
       var ni=Math.min(i+1,this.state.row_num-1);
       this.state.fcs=[ni,j]
@@ -125,9 +125,16 @@ class Table extends Component {
       }
     }   
   }
+
   pass_cell=(src_i,src_j,tar_i,tar_j)=>{
-    this.state.cList[tar_i][tar_j].content = this.state.cList[src_i][src_j].content;
+    for(let prop in this.state.cList[src_i][src_j]){
+      if(prop!==undefined)
+        this.state.cList[tar_i][tar_j][prop] = this.state.cList[src_i][src_j][prop];
+    }
   }
+  renew_cell_func=(i,j,mode,fcs)=>{}
+  copy_cell=(fcs)=>{};
+  paste_cell=(fcs)=>{};
   add_col=(fcs)=>{
     if(fcs[1] === -1){
       fcs=[0,this.state.col_num-1];
@@ -136,10 +143,12 @@ class Table extends Component {
       }
     }
     else{
+      console.log("fcs add:"+this.state.fcs[0]+","+this.state.fcs[1]);
       for (let i = 0; i < this.state.row_num; i++) {
           this.state.cList[i].push(new this.cell(i,this.state.col_num));
           //console.log(this.state.cList[i]);
           for(let j=this.state.col_num; j>fcs[1];j--){
+            //console.log(j-1+"=>"+j);
             this.pass_cell(i,j-1,i,j);
           }
           this.state.cList[i][fcs[1]]=new this.cell(i,fcs[1]);
@@ -233,19 +242,20 @@ class Table extends Component {
       var new_str = this.rm_space(str.slice(1));
       this.state.cList[i][j].isFunc=true;
       this.state.cList[i][j].FuncErr=true;
+      this.state.cList[i][j].FuncRef=[[-1,-1],[-1,-1]];;
       if(new_str.slice(0,3) ==="sum"||new_str.slice(0,3) ==="Sum"){        
         this.state.cList[i][j].FuncType="sum";
         var in_str=new_str.slice(3);
         if(in_str[0]==="(" &&in_str[in_str.length-1]===")"){ 
           in_str=in_str.slice(1,in_str.length-1).split(":");        
-          if(in_str.length == 2){                 
+          if(in_str.length == 2){       
             var c1=this.id2ij(in_str[0]),c2=this.id2ij(in_str[1]);
             if(c1[0]!==-1&&c2[0]!==-1){
               var x=this.sum_cells(c1[0],c1[1],c2[0],c2[1]);
               if(x!==false){
-                console.log("c");
                 this.state.cList[i][j].FuncErr=false;
                 this.state.cList[i][j].FuncValue=x;
+                this.state.cList[i][j].FuncRef=[c1,c2];
               }
             }
           }
@@ -254,8 +264,9 @@ class Table extends Component {
       else if(this.id2ij(new_str)[0]!==-1){
         var src=this.id2ij(new_str);
         this.state.cList[i][j].FuncErr=false;
-        this.state.cList[i][j].FuncType="refer";
+        this.state.cList[i][j].FuncType="ref";
         this.state.cList[i][j].FuncValue=this.get_cell_value(src[0],src[1]);
+        this.state.cList[i][j].FuncRef[0]=[src[0],src[1]];
       }
       else if(new_str.includes("+")||new_str.includes("-")){
         var sign="?";
@@ -275,38 +286,28 @@ class Table extends Component {
               }
             }else{
               v[l]=this.get_cell_value(c[l][0],c[l][1]);
+              this.state.cList[i][j].FuncRef[l]=[c[l][0],c[l][1]];
             }
           }
-          if(!isNaN(v[0]) && !isNaN(v[1])){
-            
-            if(sign==="+"){
-              this.state.cList[i][j].FuncErr=false;
-              this.state.cList[i][j].FuncType="plus";
-              this.state.cList[i][j].FuncValue=parseFloat(v[0])+parseFloat(v[1]);
-            }
-            else if(sign==="+"){
-              this.state.cList[i][j].FuncErr=false;
-              this.state.cList[i][j].FuncType="minus";
-              this.state.cList[i][j].FuncValue=parseFloat(v[0])-parseFloat(v[1]);
+          if(!isNaN(v[0]) && !isNaN(v[1])){ //string
+            if(v[0]=="") v[0]=0;
+            if(v[1]=="") v[1]=0;
+            if(!isNaN(parseInt(v[0]))&&!isNaN(parseInt(v[1]))){ //space
+              if(sign==="+"){
+                this.state.cList[i][j].FuncErr=false;
+                this.state.cList[i][j].FuncType="+-";
+                this.state.cList[i][j].FuncValue=parseFloat(v[0])+parseFloat(v[1]);
+              }
+              else if(sign==="-"){
+                this.state.cList[i][j].FuncErr=false;
+                this.state.cList[i][j].FuncType="+-";
+                this.state.cList[i][j].FuncValue=parseFloat(v[0])-parseFloat(v[1]);
+              }
             }
           }
         }
       }
     }
-  }
-  componentWillUpdate(){
-    for(let i=0;i<this.state.row_num;i++){
-      for(let j=0;j<this.state.col_num;j++){
-        let s=this.ij2id(i,j);
-        var fcs_in = document.getElementById(s);
-        fcs_in.value=this.get_cell_value(i,j);
-      }
-    }
-  }
-  componentDidUpdate(){
-    /*if(this.state.fcs[0]!==-1 ){
-      document.getElementById(this.ij2id(this.state.fcs[0],this.state.fcs[1])).focus();
-    }*/
   }
   get_cell_value=(i,j)=>{
     this.parse_func(i,j,this.state.cList[i][j].content);
@@ -319,9 +320,23 @@ class Table extends Component {
       return this.state.cList[i][j].content;
     }    
   }
+  componentWillUpdate(nextProps, nextState){
+    for(let t=0;t<2;t++){
+      for(let i=0;i<this.state.row_num;i++){
+        for(let j=0;j<this.state.col_num;j++){
+          let s=this.ij2id(i,j);
+          var fcs_in = document.getElementById(s);
+          fcs_in.value=this.get_cell_value(i,j);
+        }
+      }
+    }
+  }
+  /*componentDidUpdate(){
+    if(this.state.fcs[0]!==-1 ){
+      document.getElementById(this.ij2id(this.state.fcs[0],this.state.fcs[1])).focus();
+    }
+  }*/
   render() {
-    if(this.state.fcs[0]!==-1)
-    console.log("fcs on:"+this.state.fcs[0]+","+this.state.fcs[1]+"value = "+this.state.cList[this.state.fcs[0]][this.state.fcs[1]].content);
     var rows = [];
     var table = [];
     var arow = [];
@@ -350,6 +365,8 @@ class Table extends Component {
         <button id="cm" onMouseDown={()=>{this.del_col(this.state.fcs)}}>-</button>
         <button id="rp" onMouseDown={()=>{this.add_row(this.state.fcs)}}>+</button>
         <button id="rm" onMouseDown={()=>{this.del_row(this.state.fcs)}}>-</button>
+        <button id="copy" onMouseDown={()=>{this.copy_cell(this.state.fcs)}}>copy</button>
+        <button id="paste" onMouseDown={()=>{this.paste_cell(this.state.fcs)}}>paste</button>
         <table >
         {rows.map((e,index)=>{return <tr><th class={((index===this.state.fcs[0]+1)&&index!==0)? "fcs":""}>{(index===0)? "":index}</th>{e}</tr>})}          
         </table>

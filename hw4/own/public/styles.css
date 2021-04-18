@@ -40,6 +40,19 @@ button#rm{
      top: 85px;
      left: 0px;
  } 
+ button#copy{ 
+    position: absolute;
+    width:60px;
+    height:30px;
+    top: 20px;
+    left: 200px;
+ } 
+ button#paste{ 
+     position: absolute;
+     width:60px;
+     top: 20px;
+     left: 260px;
+ } 
 th{ 
     background-color: #e9e2e2;
     border:2px solid  rgb(114, 113, 113);
