@@ -37,6 +37,8 @@ class Table extends Component {
         this.content = "";
       }
     };
+    this.copied_cell=undefined;
+    this.copied_ij=[-1,-1];
     this.e_flag = true;
     for (let i = 0; i < this.state.row_num; i++) {
       this.state.cList.push([]);
@@ -162,10 +164,11 @@ class Table extends Component {
         if(c.FuncRef[0][1] == fcs[1])  del=true;
       }
       if(del){
-        this.state.cList[i][j].content="ERROR!"
+        c.content="ERROR!"
+        c.isFunc=false;
       }
       else
-      this.state.cList[i][j].content =
+      c =
         "="+this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) ;
     }
     else {
@@ -208,8 +211,69 @@ class Table extends Component {
       this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
     }}
   };
-  copy_cell = (fcs) => {};
-  paste_cell = (fcs) => {};
+  copy_cell = (fcs) => {
+    if(fcs[0]!==-1){
+      if(this.copied_cell===undefined){
+        this.copied_cell = new this.cell();
+      }
+      for (let prop in this.state.cList[fcs[0]][fcs[1]]) {
+          if (prop !== undefined)
+          this.copied_cell[prop] = this.state.cList[fcs[0]][fcs[1]][prop];
+      }
+      this.copied_ij=fcs;
+    }
+    
+  };
+  paste_cell = (fcs) => {
+    if(fcs[0]!==-1){
+      var c=this.state.cList[fcs[0]][fcs[1]];
+      if(this.copied_cell!==undefined){
+        for (let prop in this.copied_cell) {
+          if (prop !== undefined)  c[prop]=this.copied_cell[prop];
+        }
+        var dij=[fcs[0]-this.copied_ij[0],fcs[1]-this.copied_ij[1]];
+        if(c.FuncType ==="sum"){
+          for(let l=0;l<2;l++){
+            for(let i=0;i<2;i++){
+              c.FuncRef[l][i]+=dij[i];
+            }
+          }
+          c.content =
+          "=sum(" +
+          this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
+          ":" +
+          this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]) +
+          ")";
+        }else if(c.FuncType ==="ref"){
+            for(let i=0;i<2;i++){
+              c.FuncRef[0][i]+=dij[i];
+            }
+            c.content =
+            "="+
+            this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) 
+        }else if(c.FuncType ==="minus"||c.FuncType ==="plus"){
+          for(let l=0;l<2;l++){
+            for(let i=0;i<2;i++){
+              if(c.FuncRef[l][i]!==-1)  c.FuncRef[l][i]+=dij[i];
+            }
+          }
+          var sign;
+          if(c.FuncType ==="minus") sign="-";
+          else if(c.FuncType ==="plus") sign="+";
+          c.content =
+          "="+
+          this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
+          sign +
+          this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
+        }
+        this.parse_func(fcs[0],fcs[1],c.content);
+        if(c.FuncErr) {
+          c.content="ERROR!"
+          c.isFunc=false;
+        }
+      }
+    }
+  };
   add_col = (fcs) => {
     if (fcs[1] === -1) {
       fcs = [0, this.state.col_num - 1];
@@ -316,22 +380,22 @@ class Table extends Component {
       this.setState((state) => ({ flag: state.flag - 1 }));
     }
   };
-  sum_cells = (src_i, src_j, tar_i, tar_j) => {
-    if (src_i > tar_i || src_j > tar_j) return false;
-    var sum = 0;
-    for (let i = src_i; i <= tar_i; i++) {
-      for (let j = src_j; j <= tar_j; j++) {
-        if (this.state.cList[i][j].content === "") continue;
-        if (this.state.cList[i][j].isFunc)
-          sum += parseFloat(this.state.cList[i][j].FuncValue);
-        else {
-          if (!this.isNumeric(this.state.cList[i][j].content)) return false;
-          sum += parseFloat(this.state.cList[i][j].content);
-        }
+  sum_cells=(src_i,src_j,tar_i,tar_j)=>{
+    if(src_i>tar_i || src_j>tar_j) return false;
+    var sum=0;
+    for(let i=src_i;i<=tar_i;i++){
+      for(let j=src_j;j<=tar_j;j++){
+        if(this.state.cList[i][j].content ==="") continue;
+        if(this.state.cList[i][j].isFunc)  sum+=parseFloat(this.state.cList[i][j].FuncValue);
+        else{
+          if(!this.isNumeric(this.state.cList[i][j].content)) return false;
+          if(!isNaN(parseFloat(this.state.cList[i][j].content)))
+            sum+=parseFloat(this.state.cList[i][j].content);
+        }       
       }
     }
     return sum;
-  };
+  }
   rm_space = (str) => {
     var sub_str = str.trim().split(" ");
     var new_str = "";
@@ -340,6 +404,10 @@ class Table extends Component {
     }
     return str;
   };
+  inrange(ij){
+    if(ij[0]>=0&&ij[0]<this.state.row_num&&ij[1]>=0&&ij[1]<this.state.col_num) return true;
+    return false;
+  }
   parse_func = (i, j, str) => {
     this.state.cList[i][j].isFunc = false;
     if (str[0] === "=") {
@@ -360,23 +428,27 @@ class Table extends Component {
             var c1 = this.id2ij(in_str[0]),
               c2 = this.id2ij(in_str[1]);
             if (c1[0] !== -1 && c2[0] !== -1) {
-              var x = this.sum_cells(c1[0], c1[1], c2[0], c2[1]);
-              if (x !== false) {
-                this.state.cList[i][j].FuncErr = false;
-                this.state.cList[i][j].FuncValue = x;
-                this.state.cList[i][j].FuncRef = [c1, c2];
+              if(this.inrange(c1)&&this.inrange(c2)){
+                var x = this.sum_cells(c1[0], c1[1], c2[0], c2[1]);
+                if (x !== false) {
+                  this.state.cList[i][j].FuncErr = false;
+                  this.state.cList[i][j].FuncValue = x;
+                  this.state.cList[i][j].FuncRef = [c1, c2];
+                }
               }
             }
           }
         }
       } else if (this.id2ij(new_str)[0] !== -1) {
         var src = this.id2ij(new_str);
-        this.state.cList[i][j].FuncErr = false;
-        this.state.cList[i][j].FuncType = "ref";
-        this.state.cList[i][j].FuncValue = this.get_cell_value(src[0], src[1]);
-        this.state.cList[i][j].FuncRef[0] = [src[0], src[1]];
+        if(this.inrange(src)){
+          this.state.cList[i][j].FuncErr = false;
+          this.state.cList[i][j].FuncType = "ref";
+          this.state.cList[i][j].FuncValue = this.get_cell_value(src[0], src[1]);
+          this.state.cList[i][j].FuncRef[0] = [src[0], src[1]];
+        }
       } else if (new_str.includes("+") || new_str.includes("-")) {
-        var sign = "?";
+        var sign = " ";
         if (new_str.includes("+")) sign = "+";
         else if (new_str.includes("-")) sign = "-";
         var in_str = new_str.split(sign);
@@ -391,6 +463,7 @@ class Table extends Component {
                 v[l] = parseFloat(in_str[l]);
               }
             } else {
+              if(!this.inrange(c[l])) return;
               v[l] = this.get_cell_value(c[l][0], c[l][1]);
               this.state.cList[i][j].FuncRef[l] = [c[l][0], c[l][1]];
             }
