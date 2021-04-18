@@ -22,7 +22,7 @@ class Table extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = { row_num: 5, col_num: 5, cList: [], fcs: [-1, -1], flag: 0 };
+    this.state = { row_num: 100, col_num: 26, cList: [], fcs: [-1, -1], flag: 0 };
     this.cell = class cell {
       constructor() {
         this.clk = 0;
@@ -147,23 +147,44 @@ class Table extends Component {
     var c = this.state.cList[i][j];
     var FuncType = c.FuncType;
     if(FuncType ==="NULL") return false;
-    if (mode === "+r") {
-      for (let l = 0; l < 2; l++) {
-        if (c.FuncRef[l][0] >= fcs[0]) c.FuncRef[l][0]++;
+    if (FuncType === "ref") {
+      var del=false;
+      if (mode === "+r") {
+          if (c.FuncRef[0][0] >= fcs[0]) c.FuncRef[0][0]++;
+        }
+        else if (mode === "-r") {
+          if (c.FuncRef[0][0] > fcs[0]) c.FuncRef[0][0]--;  
+          if(c.FuncRef[0][0] == fcs[0])  del=true;  
+      } else if (mode === "+c") {
+        if (c.FuncRef[0][1] >= fcs[1]) c.FuncRef[0][1]++;}
+       else if (mode === "-c") {
+        if (c.FuncRef[0][1] > fcs[1]) c.FuncRef[0][1]--; 
+        if(c.FuncRef[0][1] == fcs[1])  del=true;
       }
-    } else if (mode === "-r") {
-      for (let l = 0; l < 2; l++) {
-        if (c.FuncRef[l][0] >= fcs[0]) c.FuncRef[l][0]--;
+      if(del){
+        this.state.cList[i][j].content="ERROR!"
       }
-    } else if (mode === "+c") {
-      console.log("ab");
-      for (let l = 0; l < 2; l++) {
-        if (c.FuncRef[l][1] >= fcs[1]) c.FuncRef[l][1]++;
-      }
-    } else if (mode === "-c") {
-      for (let l = 0; l < 2; l++) {
-        if (c.FuncRef[l][1] >= fcs[1]) c.FuncRef[l][1]--;
-      }
+      else
+      this.state.cList[i][j].content =
+        "="+this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) ;
+    }
+    else {
+      if (mode === "+r") {
+        for (let l = 0; l < 2; l++) {
+          if (c.FuncRef[l][0] >= fcs[0]) c.FuncRef[l][0]++;
+        }
+      } else if (mode === "-r") {
+        for (let l = 0; l < 2; l++) {
+          if (c.FuncRef[l][0] >= fcs[0]) c.FuncRef[l][0]--;
+        }
+      } else if (mode === "+c") {
+        for (let l = 0; l < 2; l++) {
+          if (c.FuncRef[l][1] >= fcs[1]) c.FuncRef[l][1]++;
+        }
+      } else if (mode === "-c") {
+        for (let l = 0; l < 2; l++) {
+          if (c.FuncRef[l][1] >= fcs[1]) c.FuncRef[l][1]--;
+        }
     }
     if (FuncType === "sum") {
       this.state.cList[i][j].content =
@@ -172,9 +193,6 @@ class Table extends Component {
         ":" +
         this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]) +
         ")";
-    } else if (FuncType === "ref") {
-      this.state.cList[i][j].content =
-        "="+this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) ;
     } else if (FuncType === "plus") {
       this.state.cList[i][j].content =
       "="+
@@ -188,7 +206,7 @@ class Table extends Component {
       this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
       "-" +
       this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
-    }
+    }}
   };
   copy_cell = (fcs) => {};
   paste_cell = (fcs) => {};
@@ -328,6 +346,7 @@ class Table extends Component {
       var new_str = this.rm_space(str.slice(1));
       this.state.cList[i][j].isFunc = true;
       this.state.cList[i][j].FuncErr = true;
+      this.state.cList[i][j].FuncType="NULL";
       this.state.cList[i][j].FuncRef = [
         [-1, -1],
         [-1, -1],
