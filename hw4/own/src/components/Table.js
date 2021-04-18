@@ -81,15 +81,18 @@ class Table extends Component {
     return[-1,-1];
   }
   cell_blur=(i,j)=>{
-    //console.log("blr");
+    var fcs_in = document.getElementById(this.ij2id(i,j));
+    this.state.cList[i][j].content=fcs_in.value;
     if(this.e_flag) this.state.fcs=[-1,-1];
     this.e_flag=true;
     this.state.cList[i][j].clk = 0;
     this.setState((state)=>({flag:state.flag+1}));
   }
   cell_clk=(i,j)=>{
+    var fcs_in = document.getElementById(this.ij2id(i,j));
     if(this.state.cList[i][j].clk === 0){
-      this.setState((state) => ({ fcs:[i,j] }));
+      fcs_in.value=this.state.cList[i][j].content;
+      this.state.fcs=[i,j];
       let s=this.ij2id(i,j);
      // console.log("First:"+s);
       this.state.cList[i][j].clk = 1;
@@ -100,16 +103,11 @@ class Table extends Component {
       this.state.cList[i][j].clk = 2;
     } 
   }
-  cell_change=(i,j)=>{
-    let s=this.ij2id(i,j);
-    var fcs_in = document.getElementById(s);
-    console.log(s+":"+fcs_in.value);
-    this.state.cList[i][j].content=fcs_in.value;
-    this.setState((state)=>({flag:state.flag+1 }))
-  }
   cell_key=(i,j,e)=>{
     if(e.key==="Enter"){
       this.e_flag=false;
+      var fcs_in = document.getElementById(this.ij2id(i,j));
+      this.state.cList[i][j].content=fcs_in.value;
       var ni=Math.min(i+1,this.state.row_num);
       this.state.fcs=[ni,j]
       document.getElementById(this.ij2id(ni,j)).focus();
@@ -118,16 +116,13 @@ class Table extends Component {
     }
     if(this.state.cList[i][j].clk === 1){
       if(e.key==="Backspace"||e.key==="Delete" ){
-        this.state.cList[i][j].content = "";
         document.getElementById(this.ij2id(i,j)).value="";
         this.state.cList[i][j].clk = 2;
       }
       else{
-        this.state.cList[i][j].content = e.key;
-        //document.getElementById(this.ij2id(i,j)).value=e.key;
+        document.getElementById(this.ij2id(i,j)).value="";
         this.state.cList[i][j].clk = 2;
       }
-      this.setState((state)=>({flag:state.flag+1 })); 
     }   
   }
   pass_cell=(src_i,src_j,tar_i,tar_j)=>{
@@ -232,9 +227,9 @@ class Table extends Component {
     this.state.cList[i][j].isFunc=false;
     if(str[0]==='='){
       var new_str = this.rm_space(str.slice(1));
-      if(new_str.slice(0,3) ==="sum"||new_str.slice(0,3) ==="Sum"){
-        this.state.cList[i][j].isFunc=true;
-        this.state.cList[i][j].FuncErr=true;
+      this.state.cList[i][j].isFunc=true;
+      this.state.cList[i][j].FuncErr=true;
+      if(new_str.slice(0,3) ==="sum"||new_str.slice(0,3) ==="Sum"){        
         this.state.cList[i][j].FuncType="sum";
         var in_str=new_str.slice(3);
         if(in_str[0]==="(" &&in_str[in_str.length-1]===")"){ 
@@ -255,12 +250,11 @@ class Table extends Component {
     }
   }
   componentWillUpdate(){
-    console.log("in");
     for(let i=0;i<this.state.row_num;i++){
       for(let j=0;j<this.state.col_num;j++){
         let s=this.ij2id(i,j);
         var fcs_in = document.getElementById(s);
-        fcs_in.value=this.state.cList[i][j].content;
+        fcs_in.value=this.get_cell_value(i,j);
       }
     }
   }
@@ -297,7 +291,7 @@ class Table extends Component {
           <td >
             <input type="text" id={s} 
             onClick={(e)=>{this.cell_clk(i,index)}}  onBlur={()=>{this.cell_blur(i,index)}}
-            onChange={(e)=>{this.cell_change(i,index,e)}} onKeyUp={(e)=>{this.cell_key(i,index,e)}} 
+            onKeyDown={(e)=>{this.cell_key(i,index,e)}} 
              />
           </td>
         );
