@@ -91,7 +91,7 @@ class Table extends Component {
     var fcs_in = document.getElementById(this.ij2id(i,j));
     if(this.state.cList[i][j].clk === 0){
       fcs_in.value=this.state.cList[i][j].content;
-      this.state.fcs=[i,j];
+      this.setState((state)=>({fcs:[i,j]}));
       let s=this.ij2id(i,j);
      // console.log("First:"+s);
       this.state.cList[i][j].clk = 1;
@@ -196,7 +196,8 @@ class Table extends Component {
         this.state.cList[i].splice(this.state.col_num-1, 1);;
       }
       this.state.fcs=[-1,-1];
-      this.setState((state)=>({col_num:state.col_num-1}));
+      this.state.col_num--;
+      this.setState((state)=>({flag:state.flag-1}));
     }
   }
   del_row=(fcs)=>{
@@ -208,7 +209,8 @@ class Table extends Component {
         }
         this.state.cList.splice(this.state.row_num-1, 1);;
       this.state.fcs=[-1,-1];
-      this.setState((state)=>({row_num:state.row_num-1}));
+      this.state.row_num--;
+      this.setState((state)=>({flag:state.flag-1}));
     }
   }
   sum_cells=(src_i,src_j,tar_i,tar_j)=>{
