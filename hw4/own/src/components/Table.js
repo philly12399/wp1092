@@ -231,46 +231,49 @@ class Table extends Component {
         for (let prop in this.copied_cell) {
           if (prop !== undefined)  c[prop]=this.copied_cell[prop];
         }
-        var dij=[fcs[0]-this.copied_ij[0],fcs[1]-this.copied_ij[1]];
-        if(c.FuncType ==="sum"){
-          for(let l=0;l<2;l++){
-            for(let i=0;i<2;i++){
-              c.FuncRef[l][i]+=dij[i];
-            }
-          }
-          c.content =
-          "=sum(" +
-          this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
-          ":" +
-          this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]) +
-          ")";
-        }else if(c.FuncType ==="ref"){
-            for(let i=0;i<2;i++){
-              c.FuncRef[0][i]+=dij[i];
+        if(c.isFunc){
+          var dij=[fcs[0]-this.copied_ij[0],fcs[1]-this.copied_ij[1]];
+          if(c.FuncType ==="sum"){
+            for(let l=0;l<2;l++){
+              for(let i=0;i<2;i++){
+                c.FuncRef[l][i]+=dij[i];
+              }
             }
             c.content =
-            "="+
-            this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) 
-        }else if(c.FuncType ==="minus"||c.FuncType ==="plus"){
-          for(let l=0;l<2;l++){
-            for(let i=0;i<2;i++){
-              if(c.FuncRef[l][i]!==-1)  c.FuncRef[l][i]+=dij[i];
+            "=sum(" +
+            this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
+            ":" +
+            this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]) +
+            ")";
+          }else if(c.FuncType ==="ref"){
+              for(let i=0;i<2;i++){
+                c.FuncRef[0][i]+=dij[i];
+              }
+              c.content =
+              "="+
+              this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) 
+          }else if(c.FuncType ==="minus"||c.FuncType ==="plus"){
+            for(let l=0;l<2;l++){
+              for(let i=0;i<2;i++){
+                if(c.FuncRef[l][i]!==-1)  c.FuncRef[l][i]+=dij[i];
+              }
             }
+            var sign;
+            if(c.FuncType ==="minus") sign="-";
+            else if(c.FuncType ==="plus") sign="+";
+            c.content =
+            "="+
+            this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
+            sign +
+            this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
           }
-          var sign;
-          if(c.FuncType ==="minus") sign="-";
-          else if(c.FuncType ==="plus") sign="+";
-          c.content =
-          "="+
-          this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
-          sign +
-          this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
+          this.parse_func(fcs[0],fcs[1],c.content);
+          if(c.FuncErr) {
+            c.content="ERROR!"
+            c.isFunc=false;
+          }
         }
-        this.parse_func(fcs[0],fcs[1],c.content);
-        if(c.FuncErr) {
-          c.content="ERROR!"
-          c.isFunc=false;
-        }
+        this.setState((state) => ({ flag: state.flag + 1 }));
       }
     }
   };
@@ -415,10 +418,7 @@ class Table extends Component {
       this.state.cList[i][j].isFunc = true;
       this.state.cList[i][j].FuncErr = true;
       this.state.cList[i][j].FuncType="NULL";
-      this.state.cList[i][j].FuncRef = [
-        [-1, -1],
-        [-1, -1],
-      ];
+
       if (new_str.slice(0, 3) === "sum" || new_str.slice(0, 3) === "Sum") {
         this.state.cList[i][j].FuncType = "sum";
         var in_str = new_str.slice(3);
@@ -441,11 +441,25 @@ class Table extends Component {
         }
       } else if (this.id2ij(new_str)[0] !== -1) {
         var src = this.id2ij(new_str);
+        if(src[0]===i&&src[1]===j) return;
         if(this.inrange(src)){
-          this.state.cList[i][j].FuncErr = false;
-          this.state.cList[i][j].FuncType = "ref";
-          this.state.cList[i][j].FuncValue = this.get_cell_value(src[0], src[1]);
-          this.state.cList[i][j].FuncRef[0] = [src[0], src[1]];
+          var src_ref=this.state.cList[src[0]][src[1]].FuncRef;
+          var loop=false;
+          for(let l=0;l<2;l++){
+              if(src_ref[l][0]!==-1&&src_ref[l][1]!==-1){
+                console.log("in");
+                if(src_ref[l][0]===i&&src_ref[l][1]===j) {loop=true;}
+              }
+          }
+          if(loop){
+
+          }
+          else{
+            this.state.cList[i][j].FuncErr = false;
+            this.state.cList[i][j].FuncType = "ref";
+            this.state.cList[i][j].FuncValue = this.get_cell_value(src[0], src[1]);
+            this.state.cList[i][j].FuncRef[0] = [src[0], src[1]];
+          }
         }
       } else if (new_str.includes("+") || new_str.includes("-")) {
         var sign = " ";
