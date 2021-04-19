@@ -36,7 +36,7 @@ canbut.onclick=()=>{
 }
 var comgrp = document.getElementById("comment-group");
 var add_comment =(t)=>{
-    console.log(t);
+    //console.log(t);
     var a0 = comgrp.firstElementChild;
     var a1 = a0.cloneNode(true);
     var t0=a1.querySelector(".comment-text");
