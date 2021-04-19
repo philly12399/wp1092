@@ -1,0 +1,56 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=3613
+END=5820
+title=Hackathon 1 Test [Basic] Correct comment number (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=6233
+END=8282
+title=Hackathon 1 Test [Basic] Add buttons (10%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=8490
+END=10376
+title=Hackathon 1 Test [Basic] Button CSS (10%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=9878
+END=12289
+title=Hackathon 1 Test [Basic] Cancel Button Color (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=12444
+END=14717
+title=Hackathon 1 Test [Basic] Comment Button Color (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=14532
+END=17049
+title=Hackathon 1 Test [Basic] Comment Button Color Change (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=17092
+END=19592
+title=Hackathon 1 Test [Basic] Clear Text Input (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=19586
+END=22109
+title=Hackathon 1 Test [Basic] Check Buttons Visibility (10%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=21948
+END=24662
+title=Hackathon 1 Test [Basic] Hide The Buttons (5%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=24477
+END=27395
+title=Hackathon 1 Test [Advanced] Leave a comment (10%)
+[CHAPTER]
+TIMEBASE=1/1000
+START=28382
+END=30332
+title=Hackathon 1 Test [Advanced] Comment Number (10%)
