@@ -153,27 +153,30 @@ class Table extends Component {
     var c = this.state.cList[i][j];
     var FuncType = c.FuncType;
     if(FuncType ==="NULL") return false;
-    if (FuncType === "ref") {
-      var del=false;
+    var del=false;
+    if (FuncType === "ref") { 
+      console.log(c.FuncRef[0]);
+      console.log(fcs);
       if (mode === "+r") {
           if (c.FuncRef[0][0] >= fcs[0]) c.FuncRef[0][0]++;
         }
         else if (mode === "-r") {
           if (c.FuncRef[0][0] > fcs[0]) c.FuncRef[0][0]--;  
-          if(c.FuncRef[0][0] == fcs[0])  del=true;  
+          else if(c.FuncRef[0][0] == fcs[0]&&fcs[0]!==-1)  del=true;  
       } else if (mode === "+c") {
         if (c.FuncRef[0][1] >= fcs[1]) c.FuncRef[0][1]++;}
        else if (mode === "-c") {
         if (c.FuncRef[0][1] > fcs[1]) c.FuncRef[0][1]--; 
-        if(c.FuncRef[0][1] == fcs[1])  del=true;
+        else if(c.FuncRef[0][1] == fcs[1]&&fcs[1]!==-1)  del=true;
       }
       if(del){
         c.content="ERROR!"
         c.isFunc=false;
       }
-      else
-      c =
+      else{    
+      c.content =
         "="+this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) ;
+      }
     }
     else {
       if (mode === "+r") {
@@ -182,7 +185,8 @@ class Table extends Component {
         }
       } else if (mode === "-r") {
         for (let l = 0; l < 2; l++) {
-          if (c.FuncRef[l][0] >= fcs[0]) c.FuncRef[l][0]--;
+          if (c.FuncRef[l][0] > fcs[0]) c.FuncRef[l][0]--;
+          else if(c.FuncRef[l][0] == fcs[0]&&fcs[0]!==-1)  del=true;  
         }
       } else if (mode === "+c") {
         for (let l = 0; l < 2; l++) {
@@ -190,10 +194,16 @@ class Table extends Component {
         }
       } else if (mode === "-c") {
         for (let l = 0; l < 2; l++) {
-          if (c.FuncRef[l][1] >= fcs[1]) c.FuncRef[l][1]--;
+          if (c.FuncRef[l][1] > fcs[1]) c.FuncRef[l][1]--;
+          else if(c.FuncRef[l][1] == fcs[1]&&fcs[1]!==-1)  del=true;  
         }
     }
     if (FuncType === "sum") {
+      if(del){
+        c.content="ERROR!"
+        c.isFunc=false;
+      }
+      else
       this.state.cList[i][j].content =
         "=sum(" +
         this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
@@ -201,6 +211,11 @@ class Table extends Component {
         this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]) +
         ")";
     } else if (FuncType === "plus") {
+      if(del){
+        c.content="ERROR!"
+        c.isFunc=false;
+      }
+      else
       this.state.cList[i][j].content =
       "="+
       this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
@@ -208,7 +223,12 @@ class Table extends Component {
       this.ij2id(c.FuncRef[1][0], c.FuncRef[1][1]);
     }
     else if (FuncType === "minus") {
-      this.state.cList[i][j].content =
+      if(del){
+        c.content="ERROR!"
+        c.isFunc=false;
+      }
+      else
+      c.content =
       "="+
       this.ij2id(c.FuncRef[0][0], c.FuncRef[0][1]) +
       "-" +
