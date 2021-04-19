@@ -122,6 +122,10 @@ class Table extends Component {
       var ni = Math.min(i + 1, this.state.row_num - 1);
       this.state.fcs = [ni, j];
       document.getElementById(this.ij2id(ni, j)).focus();
+      var fcs_i = document.getElementById("th" + (ni + 1));
+      var fcs_j = document.getElementById("th" + Table.col_id2str(j));
+      fcs_i.classList.add("fcs");
+      fcs_j.classList.add("fcs");
       this.state.cList[ni][j].clk = 1;
       this.setState((state) => ({ flag: state.flag + 1 }));
       return;
