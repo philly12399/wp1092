@@ -28,6 +28,7 @@ class MergeSchool extends Component {
       win: false, // flag for win i.e. get a "65536" grid
       seed: secret_seed,
     };
+    this.new_ij=[-1,-1];
   }
 
   // Pesudo random number generator
@@ -43,27 +44,53 @@ class MergeSchool extends Component {
     if (temp < 0) temp = 0xffffffff + temp;
     return temp % mod;
   };
+
+
   componentDidMount(){
       document.querySelector("body").addEventListener("keydown", (event) => {
         this.handleKeyDown(event);
       });
+      for(let i=0;i<4;i++){
+        for(let j=0;j<4;j++){
+          if(this.state.board[i][j]!==0){ 
+            document.getElementById(`grid-${i}-${j}`).classList.add("school-fade-in");}
+        } 
+      }
+  };
+  componentDidUpdate(){
+    if(this.new_ij[0]!==-1)
+    document.getElementById(`grid-${this.new_ij[0]}-${this.new_ij[1]}`).classList.add("school-fade-in");
   }
   // Create board and add two "2" and reset everything required
   initializeBoard = () => {
-      console.log("init");
+      //console.log("init");
     let board = [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0],
     ];
+    document.getElementById("board-full").classList.remove("game-over-board");
+    document.getElementById("game-over-info").classList.remove("game-over-wrapper");
+    document.getElementById("game-over-info").classList.remove("end-fade-in");    
     let boardset = this.putGridRandom(board, true);
     boardset = this.putGridRandom(boardset.board, true); 
+    for(let i=0;i<4;i++){
+      for(let j=0;j<4;j++){
+        document.getElementById(`grid-${i}-${j}`).classList.remove("school-fade-in");
+        if( boardset.board[i][j]!==0){ 
+          //console.log(i+","+j);
+          document.getElementById(`grid-${i}-${j}`).classList.add("school-fade-in");}
+      }
+    } 
     this.setState({
       board:boardset.board,
       qs_ranking: 32768,
       step: 0,
+      win:false,
+      gameover: false,
     });
+   
     // #########################
     // # 7 Add something yourself
     // boardset.board will be the initial board, please use it directly
@@ -95,7 +122,13 @@ class MergeSchool extends Component {
       random_num = this.prng(this.state.seed, 0, empty_grid.length);
     }
     let random_empty_grid = empty_grid[random_num];
+    for(let i=0;i<4;i++){
+      for(let j=0;j<4;j++){
+        document.getElementById(`grid-${i}-${j}`).classList.remove("school-fade-in");
+      }
+    }     
     board[random_empty_grid[0]][random_empty_grid[1]] = 2;
+    this.new_ij=random_empty_grid;
     return { board };
   };
 
@@ -133,6 +166,7 @@ class MergeSchool extends Component {
   checkAndUpdateAfterMove = (nextBoard) => {
     if (this.justifyMove(this.state.board, nextBoard.board)) {
       const nextBoardSetWithRandom = this.putGridRandom(nextBoard.board, false);
+      console.log(document.getElementById("grid-2-1").classList);
       let qsRankNow = this.state.qs_ranking;
       let stepNow = this.state.step;
         
@@ -154,24 +188,31 @@ class MergeSchool extends Component {
             }
         }
       }
-      if (effective) {
           if (cnt2 <= cnt1) qsRankNow--;
           stepNow += 1;
-        
-      } this.setState({
+       this.setState({
         board: nextBoardSetWithRandom.board,
         qs_ranking: qsRankNow,
         step: stepNow,
       });
-if(this.state.best_qs_ranking>this.state.qs_ranking){
+    if(this.state.best_qs_ranking>this.state.qs_ranking){
         var x = this.state.qs_ranking;        
         this.setState({ best_qs_ranking:x});
     }
       // #########################
       // # 7 Implement yourself
       // #########################
-
-      if (this.checkGameover(nextBoardSetWithRandom.board)) {
+      if (this.checkWin(nextBoardSetWithRandom.board)){
+        this.setState({ win: true });
+        document.getElementById("board-full").classList.add("game-over-board");
+        document.getElementById("game-over-info").classList.add("game-over-wrapper");   
+        document.getElementById("game-over-info").classList.add("end-fade-in");     
+      }
+      else if (this.checkGameover(nextBoardSetWithRandom.board)) {
+        document.getElementById("board-full").classList.add("game-over-board");
+        document.getElementById("game-over-info").classList.add("game-over-wrapper");
+        document.getElementById("game-over-info").classList.add("end-fade-in");
+        
         this.setState({ gameover: true });
       }
     }
@@ -287,7 +328,16 @@ if(this.state.best_qs_ranking>this.state.qs_ranking){
     // #########################
     // # 9 Implement yourself
     // #########################
-
+    let cnt=0;
+    let nextBoard = this.moveRight(this.state.board);
+    if(this.justifyMove(this.state.board, nextBoard.board)===false) cnt++; 
+    nextBoard = this.moveLeft(this.state.board);
+    if(this.justifyMove(this.state.board, nextBoard.board)===false) cnt++;
+    nextBoard = this.moveUp(this.state.board);
+    if(this.justifyMove(this.state.board, nextBoard.board)===false) cnt++;
+    nextBoard = this.moveDown(this.state.board);
+    if(this.justifyMove(this.state.board, nextBoard.board)===false) cnt++;
+    if(cnt===4) return true;
     return false;
   };
 
@@ -296,6 +346,11 @@ if(this.state.best_qs_ranking>this.state.qs_ranking){
     // #########################
     // # 10 Implement yourself
     // #########################
+    for(let i=0;i<4;i++){
+      for(let j=0;j<4;j++){
+        if(board[i][j]===65536) return true;
+      }
+    }
     return false;
   };
 
@@ -346,7 +401,7 @@ if(this.state.best_qs_ranking>this.state.qs_ranking){
     return (
       <>
         <Header init={this.initializeBoard} qs={this.state.qs_ranking} best={this.state.best_qs_ranking} step={this.state.step}/>
-        <Board2048 className="wrapper" board={this.state.board} />
+        <Board2048 className="wrapper" board={this.state.board} tryagain={this.initializeBoard} win={this.state.win}/>
         <div className="btn-groups">
           <div className="btn-useful" id="badend-btn" onClick={this.setBadEnd}>
             BadEnd
