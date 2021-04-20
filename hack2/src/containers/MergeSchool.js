@@ -163,10 +163,10 @@ class MergeSchool extends Component {
         qs_ranking: qsRankNow,
         step: stepNow,
       });
-        if (this.state.best_qs_ranking > this.state.qs_ranking) {
-        var x = this.state.qs_ranking;
-        this.setState({ best_qs_ranking: x });
-        }
+if(this.state.best_qs_ranking>this.state.qs_ranking){
+        var x = this.state.qs_ranking;        
+        this.setState({ best_qs_ranking:x});
+    }
       // #########################
       // # 7 Implement yourself
       // #########################
@@ -287,7 +287,7 @@ class MergeSchool extends Component {
     // #########################
     // # 9 Implement yourself
     // #########################
-    
+
     return false;
   };
 
