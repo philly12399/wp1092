@@ -59,10 +59,6 @@ class MergeSchool extends Component {
     ];
     let boardset = this.putGridRandom(board, true);
     boardset = this.putGridRandom(boardset.board, true); 
-    document.getElementById("general-qs-ranking-value").innerHTML = 32768;
-    document.getElementById("general-step-value").innerHTML = 0;
-    if(this.state.best_qs_ranking>this.state.qs_ranking)
-    this.setState((state)=>{ best_qs_ranking:state.qs_ranking;});
     this.setState({
       board:boardset.board,
       qs_ranking: 32768,
@@ -116,6 +112,15 @@ class MergeSchool extends Component {
       if (direction === "right") {
         const nextBoard = this.moveRight(this.state.board);
         this.checkAndUpdateAfterMove(nextBoard);
+      } else if (direction === "left") {
+        const nextBoard = this.moveLeft(this.state.board);
+        this.checkAndUpdateAfterMove(nextBoard);
+      } else if (direction === "up") {
+        const nextBoard = this.moveUp(this.state.board);
+        this.checkAndUpdateAfterMove(nextBoard);
+      } else if (direction === "down") {
+        const nextBoard = this.moveDown(this.state.board);
+        this.checkAndUpdateAfterMove(nextBoard);
       }
       // #########################
       // # 8 Implement yourself
@@ -151,18 +156,17 @@ class MergeSchool extends Component {
       }
       if (effective) {
           if (cnt2 <= cnt1) qsRankNow--;
-          document.getElementById(
-            "general-qs-ranking-value"
-          ).innerHTML = qsRankNow;
-        stepNow += 1;
-        document.getElementById("general-step-value").innerHTML = stepNow;
+          stepNow += 1;
         
       } this.setState({
         board: nextBoardSetWithRandom.board,
         qs_ranking: qsRankNow,
         step: stepNow,
       });
-
+        if (this.state.best_qs_ranking > this.state.qs_ranking) {
+        var x = this.state.qs_ranking;
+        this.setState({ best_qs_ranking: x });
+        }
       // #########################
       // # 7 Implement yourself
       // #########################
@@ -220,31 +224,42 @@ class MergeSchool extends Component {
   };
 
   moveUp = (prevBoard) => {
-    // #########################
-    // # 8 Implement yourself
-    // #########################
-    let board = prevBoard;
-    let combination = 0;
-    return { board, combination };
+     var b = this.rotateClockwise(prevBoard);
+     var bc = this.moveRight(b);
+     bc.board = this.rotateCounterClockwise(bc.board);
+     // #########################
+     // # 8 Implement yourself
+     // #########################
+     let board = bc.board;
+     let combination = bc.combination;
+     return { board, combination };
   };
 
   // Movedown function
   moveDown = (prevBoard) => {
-    // #########################
-    // # 8 Implement yourself
-    // #########################
-    let board = prevBoard;
-    let combination = 0;
-    return { board, combination };
+      var b = this.rotateCounterClockwise(prevBoard);
+      var bc = this.moveRight(b);
+      bc.board = this.rotateClockwise(bc.board      );
+      // #########################
+      // # 8 Implement yourself
+      // #########################
+      let board = bc.board;
+      let combination = bc.combination;
+      return { board, combination };
   };
 
   // Moveleft function
   moveLeft = (prevBoard) => {
+      var b = this.rotateClockwise(this.rotateClockwise(prevBoard));
+      var bc=this.moveRight(b);
+      bc.board = this.rotateCounterClockwise(
+        this.rotateCounterClockwise(bc.board)
+      );
     // #########################
     // # 8 Implement yourself
     // #########################
-    let board = prevBoard;
-    let combination = 0;
+    let board = bc.board; ;
+    let combination = bc.combination;
     return { board, combination };
   };
 
@@ -260,10 +275,11 @@ class MergeSchool extends Component {
 
   // Rotate the matrix counterclockwisely
   rotateCounterClockwise = (matrix) => {
+      let result = this.rotateClockwise(this.rotateClockwise(this.rotateClockwise(matrix)));
     // #########################
     // # 8 Implement yourself
     // #########################
-    return matrix;
+    return result;
   };
 
   // Check if it is gameover
@@ -271,7 +287,7 @@ class MergeSchool extends Component {
     // #########################
     // # 9 Implement yourself
     // #########################
-
+    
     return false;
   };
 
@@ -292,6 +308,12 @@ class MergeSchool extends Component {
     event.preventDefault();
     if (event.keyCode === 39) {
       this.moveGrid("right");
+    } else if (event.keyCode === 37) {
+      this.moveGrid("left");
+    } else if (event.keyCode === 38) {
+      this.moveGrid("up");
+    } else if (event.keyCode === 40) {
+      this.moveGrid("down");
     }
     // #########################
     // # 8 Implement yourself
@@ -323,7 +345,7 @@ class MergeSchool extends Component {
   render() {
     return (
       <>
-        <Header init={this.initializeBoard} />
+        <Header init={this.initializeBoard} qs={this.state.qs_ranking} best={this.state.best_qs_ranking} step={this.state.step}/>
         <Board2048 className="wrapper" board={this.state.board} />
         <div className="btn-groups">
           <div className="btn-useful" id="badend-btn" onClick={this.setBadEnd}>
