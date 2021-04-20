@@ -1,107 +1,266 @@
-describe('Hackathon 1 Test', () => {
+describe('Hackathon 2 Test', () => {
     // checkpoint 1
-    it('[Basic] Correct comment number (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-num').should('have.text', '1則留言')
+    it('#1 [Easy] Show the 16 grids according to the board matrix with corresponding id grid-i-j with a child named value-i-j (5%)', () => {
+        cy.visit('/')
+        cy.get('#grid-3-0').children().eq(0).should('have.id', 'value-3-0')
+        cy.get('#grid-3-1').children().eq(0).should('have.id', 'value-3-1')
+        cy.get('#grid-1-1').children().eq(0).should('have.id', 'value-1-1')
+        cy.get('#grid-0-3').children().eq(0).should('have.id', 'value-0-3')
     })
   
     // checkpoint 2
-    it('[Basic] Add buttons (10%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-button-group').children().eq(0).should('have.id', 'cancel-button')
-        cy.get('#comment-button-group').children().eq(1).should('have.id', 'comment-button')
-        cy.get('#cancel-button').should('have.text', '取消')
-        cy.get('#comment-button').should('have.text', '留言')
+    it('#2 [Easy] Show the grids with corresponding background color (5%)', () => {
+        cy.visit('/')
+        cy.get('#grid-3-0').should('have.css', 'background-color', 'rgb(248, 243, 232)')
+        cy.get('#grid-3-1').should('have.css', 'background-color', 'rgb(248, 243, 232)')
+        cy.get('#goodend-btn').click()
+        cy.get('#grid-3-0').should('have.css', 'background-color', 'rgb(31, 164, 226)')
+        cy.get('#grid-3-1').should('have.css', 'background-color', 'rgb(54, 174, 230)')
+        cy.get('#grid-3-2').should('have.css', 'background-color', 'rgb(75, 182, 231)')
+        cy.get('#grid-3-3').should('have.css', 'background-color', 'rgb(97, 192, 237)')
+
     })
 
     // checkpoint 3
-    it('[Basic] Button CSS (10%)', () => {
-        cy.visit('index.html')
-        cy.get('#cancel-button').should('have.css', 'border-style', 'none')
-        cy.get('#cancel-button').should('have.css', 'border-radius', '2px')
-        cy.get('#cancel-button').should('have.css', 'width', '72px')
-        cy.get('#cancel-button').should('have.css', 'height', '40px')
-        cy.get('#comment-button').should('have.css', 'border-style', 'none')
-        cy.get('#comment-button').should('have.css', 'border-radius', '2px')
-        cy.get('#comment-button').should('have.css', 'width', '72px')
-        cy.get('#comment-button').should('have.css', 'height', '40px')
+    it('#3 [Easy] Mapping the numeric value to the corresponding school name (5%)', () => {
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#value-2-1').should('have.text', '')
+        cy.get('#value-1-3').should('have.text', '')
+        cy.get('#goodend-btn').click()
+        cy.get('#value-3-0').should('have.text', 'Stanford')
+        cy.get('#value-3-1').should('have.text', 'Cambridge')
+        cy.get('#value-2-1').should('have.text', 'UCB')
+        cy.get('#value-1-3').should('have.text', 'UCSD')
+        
     })
 
     // checkpoint 4
-    it('[Basic] Cancel Button Color (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#cancel-button').should('have.css', 'background-color', 'rgb(255, 255, 255)')
-        cy.get('#cancel-button').should('have.css', 'color', 'rgb(96, 96, 96)')
+    it('#4 [Easy] Enable moving in right direction and step changing with keyboard (15%)', () => {
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-step-value').should('have.text', '0')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#general-step-value').should('have.text', '1')
+        cy.get('#value-3-3').should('have.text', 'NYMU')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#general-step-value').should('have.text', '2')
+        cy.get('#value-3-3').should('have.text', 'NYMU')
+        cy.get('#value-3-2').should('have.text', 'NCTU')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#general-step-value').should('have.text', '4')
+        cy.get('#value-2-3').should('have.text', 'NYMU')
+        cy.get('#value-3-3').should('have.text', 'NYMU')
+        cy.get('#value-0-3').should('have.text', 'NCTU')
+        cy.get('#value-3-2').should('have.text', 'NCTU')
     })
 
     // checkpoint 5
-    it('[Basic] Comment Button Color (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-button').should('have.css', 'background-color', 'rgb(204, 204, 204)')
-        cy.get('#comment-button').should('have.css', 'color', 'rgb(255, 255, 255)')
+    it('#5 [Easy] Enable QS ranking update (5%)', () => {
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-qs-ranking-value').should('have.text', '32768')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#general-qs-ranking-value').should('have.text', '32767')
     })
 
     // checkpoint 6
-    it('[Basic] Comment Button Color Change (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-input').type('test')
-        cy.get('#comment-button').should('have.css', 'background-color', 'rgb(6, 95, 212)')
-        cy.get('#comment-input').clear()
-        cy.get('#comment-button').should('have.css', 'background-color', 'rgb(204, 204, 204)')
+    it('#6 [Easy] Enable the New Game btn (10%)', () => {
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#general-step-value').should('have.text', '1')
+        cy.get('#reset-button').click()
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+
+
     })
 
     // checkpoint 7
-    it('[Basic] Clear Text Input (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-input').type('test')
-        cy.get('#comment-input').should('have.value', 'test')
-        cy.get('#comment-button').click()
-        cy.get('#comment-input').should('have.value', '')
-        cy.get('#comment-button').should('have.css', 'background-color', 'rgb(204, 204, 204)')
+    it('#7 [Easy] Enable recording of best QS ranking (5%)', () => {
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#best-qs-ranking-value').should('have.text', '32767')
+        cy.get('#reset-button').click()
+        cy.get('#best-qs-ranking-value').should('have.text', '32767')
     })
 
     // checkpoint 8
-    it('[Basic] Check Buttons Visibility (10%)', () => {
-        cy.visit('index.html')
-        cy.get('#cancel-button').should('not.be.visible')
-        cy.get('#comment-button').should('not.be.visible')
-        cy.get('#comment-input').click()
-        cy.get('#cancel-button').should('be.visible')
-        cy.get('#comment-button').should('be.visible')
+    it('#8 [Medium] Enabling moving in all direction and record correctly (20%)', () => {
+        //left
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('#value-3-0').should('have.text', 'NYMU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32767')
+        cy.get('#general-step-value').should('have.text', '1')
+
+        //up
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+        cy.get('body').trigger('keydown', {keyCode: 38, which: 38})
+        cy.get('#value-0-0').should('have.text', 'NCTU')
+        cy.get('#value-0-1').should('have.text', 'NCTU')
+        cy.get('#value-1-2').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '1')
+
+        //down -> would not work
+        cy.visit('/')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+
+        //up and down and left and right
+        cy.visit('/')
+        cy.get('body').trigger('keydown', {keyCode: 38, which: 38})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#value-0-3').should('have.text', 'NCTU')
+        cy.get('#value-2-3').should('have.text', 'NYMU')
+        cy.get('#value-3-2').should('have.text', 'NYMU')
+        cy.get('#value-3-3').should('have.text', 'NCTU')
+        cy.get('#best-qs-ranking-value').should('have.text', '32766')
+        cy.get('#general-step-value').should('have.text', '4')
+        
     })
 
     // checkpoint 9
-    it('[Basic] Hide The Buttons (5%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-input').type('test')
-        cy.get('#cancel-button').should('be.visible')
-        cy.get('#comment-button').should('be.visible')
-        cy.get('#cancel-button').click()
-        cy.get('#cancel-button').should('not.be.visible')
-        cy.get('#comment-button').should('not.be.visible')
+    it('#9 [Medium] Loss game detection (10%)', () => {
+        cy.visit('/')
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+        cy.get('#badend-btn').click()
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('#game-over-info').should('have.css', 'opacity', '1')
+        cy.get('#board-full').should('have.css', 'opacity', '0.15')
+        cy.get('#game-over-text').should('have.text', 'No funding this year QAO')
+
+        cy.get('#game-over-button').click()
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
+
     })
 
     // checkpoint 10
-    it('[Advanced] Leave a comment (10%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-input').type('test')
-        cy.get('#comment-button').click()
-        cy.get('#comment-group').find('.comment:last-child').get('.comment-img')
-        cy.get('#comment-group').find('.comment:last-child').contains('Toby Chen')
-        cy.get('#comment-group').find('.comment:last-child').contains('test')
-        cy.get('#cancel-button').should('be.visible')
-        cy.get('#comment-button').should('be.visible')
+    it('#10 [Medium] Win game detection (5%)', () => {
+        cy.visit('/')
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+
+        cy.get('#goodend-btn').click()
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+
+        cy.get('#value-3-0').should('have.text', 'MIT')
+        cy.get('#game-over-info').should('have.css', 'opacity', '1')
+        cy.get('#board-full').should('have.css', 'opacity', '0.15')
+        cy.get('#game-over-text').should('have.text', 'You should study a PhD!')
+
+        cy.get('#game-over-button').click()
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+        cy.get('#value-3-0').should('have.text', 'NCTU')
+        cy.get('#value-3-1').should('have.text', 'NCTU')
+        cy.get('#general-qs-ranking-value').should('have.text', '32768')
+        cy.get('#general-step-value').should('have.text', '0')
     })
 
     // checkpoint 11
-    it('[Advanced] Comment Number (10%)', () => {
-        cy.visit('index.html')
-        cy.get('#comment-num').should('have.text', '1則留言')
-        cy.get('#comment-input').type('test')
-        cy.get('#comment-button').click()
-        cy.get('#comment-num').should('have.text', '2則留言')
-        cy.get('#comment-input').type('test')
-        cy.get('#comment-button').click()
-        cy.get('#comment-num').should('have.text', '3則留言')
+    it('#11 [Hard] When player win or lost the game, please gradually show the message (1%)', () => {
+        cy.visit('/')
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#game-over-info').should('not.have.class', 'end-fade-in')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+        cy.get('#goodend-btn').click()
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 40, which: 40})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        
+        cy.get('#game-over-info').should('have.class', 'end-fade-in')
+        cy.get('#value-3-0').should('have.text', 'MIT')
+        cy.get('#game-over-info').should('have.css', 'opacity', '1')
+        cy.get('#board-full').should('have.css', 'opacity', '0.15')
+
+        cy.visit('/')
+        cy.get('#game-over-info').should('have.css', 'opacity', '0')
+        cy.get('#game-over-info').should('not.have.class', 'end-fade-in')
+        cy.get('#board-full').should('have.css', 'opacity', '1')
+        cy.get('#badend-btn').click()
+        cy.get('body').trigger('keydown', {keyCode: 37, which: 37})
+        cy.get('#game-over-info').should('have.class', 'end-fade-in')
+        cy.get('#game-over-info').should('have.css', 'opacity', '1')
+        cy.get('#board-full').should('have.css', 'opacity', '0.15')
+        
+    })
+
+    // checkpoint 12
+    it('#12 [Hard] If one grid is firstly generated, make a fade-in animation for it (14%)', () => {
+        cy.visit('/')
+        cy.get('#grid-3-0').should('have.class', 'school-fade-in')
+        cy.get('#grid-3-1').should('have.class', 'school-fade-in')
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('body').trigger('keydown', {keyCode: 39, which: 39})
+        cy.get('#grid-2-1').should('have.class', 'school-fade-in')
+        cy.get('#grid-0-3').should('not.have.class', 'school-fade-in')
+        cy.get('#grid-0-0').should('not.have.class', 'school-fade-in')
     })
 })
