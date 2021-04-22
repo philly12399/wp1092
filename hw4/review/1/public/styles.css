@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    margin: 0;
+}
+
+:root {
+    --clr-primary-100: #f5f5f5;
+    --clr-primary-300: #dcdcdc;
+    --clr-primary-500: #d3d3d3;
+    --clr-primary-700: #c0c0c0;
+    --clr-secondary-500: #007bbb;
+    --clr-white: #fff;
+    --clr-black: #000;
+    --cell-500: 5rem;
+    --cell-300: 3rem;
+    --cell-200: 2rem;
+    --text-h: 1.3rem;
+}
+
+#root {
+    display: flex;
+    height: 100vh;
+}
+
+button {
+    text-align: center;
+    background-origin: #fff;
+}
+
+.row-adder > button {
+    width: 100%;
+    height: var(--cell-200);
+}
+
+.col-adder > button {
+    width: var(--cell-200);
+    height: 100%;
+}
+
+.row-adder {
+    width: var(--cell-200);
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.row-adder > div {
+    width: 100%;
+    height: var(--cell-200);
+}
+
+.container-bg {
+    width: calc(100% - var(--cell-200));
+}
+
+.col-adder {
+    height: var(--cell-200);
+    width: 100%;
+    display: flex;
+}
+
+.bg-dark {
+    background: var(--clr-primary-500);
+}
+
+.bg-light {
+    background: var(--clr-primary-100);
+}
+
+.container {
+    height: calc(100% - var(--cell-200));
+    width: calc(100% - var(--cell-200));
+    border: 1px solid var(--clr-black);
+    overflow-x: scroll;
+    position: absolute;
+    z-index: 1;
+}
+
+.row {
+    display: flex;
+    height: var(--text-h);
+}
+
+
+.row > div {
+    position: relative;
+    width: var(--cell-500);
+    flex-shrink: 0;
+    border-right: 1px solid var(--clr-primary-300);
+    border-bottom: 1px solid var(--clr-primary-300);
+    padding: 0 2px;
+    overflow: hidden;
+}
+
+.cell-focus {
+    border: 3px solid var(--clr-secondary-500) !important;
+}
+
+.cell-input {
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+.cell-input > textarea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: calc(3 * var(--text-h));
+    width: calc(3 * var(--cell-500));
+    resize: none;
+    outline: none;  
+    overflow: hidden;
+    border: 1px solid var(--clr-secondary-500);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.row-index {
+    width: var(--cell-300) !important;
+}
+
+.col-index {
+    width: 100%;
+}
+
+.row-index, .col-index {
+    text-align: center;
+    border-right: 1px solid var(--clr-primary-700) !important;
+    border-bottom: 1px solid var(--clr-primary-700) !important;
+}
+
+.index-focus {
+    background-color: var(--clr-primary-500) !important;
+}
