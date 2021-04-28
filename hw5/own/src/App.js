@@ -12,8 +12,8 @@ function App() {
     <div>
       <button
         onClick={async () => {
-          await startGame()
-          setHasStarted(true)
+          let f =await startGame();
+          if(f!=="server not responding") setHasStarted(true)
         }}
       >
         start game
@@ -26,10 +26,12 @@ function App() {
       <p>you won! the number was {number}.</p>
       <button
         onClick={async () => {
-          await restart()
-          setHasWon(false)
-          setStatus('')
-          setNumber('')
+          let f =await restart()
+          if(f!=="server not responding"){
+            setHasWon(false)
+            setStatus('')
+            setNumber('')
+          }
         }}
       >
         restart

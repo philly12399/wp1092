@@ -84,7 +84,9 @@ const writeLog=(str)=>{
 //initialize
 mkDir();
 createLog();
+var first=true;
+const setFirst=(x)=>{first=x;};
 app.listen(port, () => {
   console.log(`Server is up on port ${port}.`)
 })
-export {writeLog}
+export {writeLog,first,setFirst}

@@ -1,6 +1,6 @@
 import express from 'express'
 import getNumber from '../core/getNumber'
-import {writeLog} from '../server'
+import {writeLog,setFirst, first} from '../server'
 const router = express.Router()
 
 function roughScale(x, base) {
@@ -12,8 +12,9 @@ function roughScale(x, base) {
 }
 
 // Just call getNumber(true) to generate a random number for guessing game
-router.post('/start', (_, res) => {  
-  writeLog("start number="+getNumber(true));
+router.post('/start', (_, res) => {
+  setFirst(true);  
+  getNumber(true);
   res.json({ msg: 'The game has started.' })
 })
 
@@ -40,7 +41,11 @@ router.get('/guess', (req, res) => {
 
 // TODO: add router.post('/restart',...)
 router.post('/restart', (_, res) => {
-  writeLog("restart number="+getNumber(true));
-  res.json({ msg: 'The game has restarted.' })
+    if(!first)
+      writeLog("restart number="+getNumber(true));
+    else
+      getNumber(true);
+    
+    res.json({ msg: 'The game has restarted.' })
 })
 export default router
