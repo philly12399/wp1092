@@ -6,21 +6,17 @@ class TodoApp extends Component {
   constructor(props) {
     super(props);
     this.state = { todoNum: 0, compNum: 0, filter: "ALL", clear: 0 };
-    this.changetodoNum = this.changetodoNum.bind(this);
-    this.changecompNum = this.changecompNum.bind(this);
-    this.changefilter = this.changefilter.bind(this);
-    this.changeclear = this.changeclear.bind(this);
   }
-  changetodoNum(num) {
+  changetodoNum=(num)=> {
     this.setState({ todoNum: num });
   }
-  changecompNum(num) {
+  changecompNum=(num)=> {
     this.setState({ compNum: num });
   }
-  changefilter(s) {
+  changefilter=(s)=> {
     this.setState({ filter: s });
   }
-  changeclear(s) {
+  changeclear=(s)=> {
     this.setState({ clear: s });
   }
   render() {
