@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/', routes);
-
 mongo.connect();
 
 const server = app.listen(process.env.PORT || 4000, function () {
