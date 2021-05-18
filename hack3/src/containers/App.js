@@ -23,7 +23,8 @@ class App extends Component {
       current_station_id: 'None',
       start_station: '',
       end_station: '',
-      distance: -2
+      distance: -2,
+      xxx:0
     }
     this.co=[];
   }
@@ -34,9 +35,12 @@ class App extends Component {
     const {
       data: {data},
     } = await instance.get('/getStations', { });
-    
-    return data;
-    
+    if(data["R"]!==undefined) this.co.push("R");
+    if(data["B"]!==undefined)  this.co.push("B");
+    if(data["G"]!==undefined) this.co.push("G");
+    if(data["O"]!==undefined) this.co.push("O");
+    console.log(data)
+    this.setState((state) => ({ data:data }));
   }
 
   calculateDistance = async () => {
@@ -44,15 +48,13 @@ class App extends Component {
     // coding here ...
   }
   componentDidMount(){    
-    var d=this.getStations();
-    this.setState((state) => ({ data: d }));
+    this.getStations();
   }
   // fetch data here after 1st render
   // coding here ...
  
   render() {
     let station_info = null
-    
     if (!Object.keys(this.state.data).length) {
       return (
         <div className="wrapper">
@@ -60,10 +62,7 @@ class App extends Component {
         </div>
       )
     }
-    if(this.state.data["R"]!==undefined) this.co.push("R");
-    if(this.state.data["B"]!==undefined)  this.co.push("B");
-    if(this.state.data["G"]!==undefined)this.co.push("G");
-    if(this.state.data["O"]!==undefined)this.co.push("O");
+
     return (
       <div className="wrapper">
         <div className="welcome-title"><h1>Welcome to MRT Distance Calculator !</h1></div>
@@ -97,7 +96,7 @@ class App extends Component {
 
           <div className="route-graph-info-container">
             <RouteGraph route_data={this.state.data[this.co[0]]} />{/* you should pass data to child component with your own customized parameters */}
-            <RouteGraph route_data={this.state.data[this.co[0]]} /> {/* you should pass data to child component with your own customized parameters */}
+            <RouteGraph route_data={this.state.data[this.co[1]]} /> {/* you should pass data to child component with your own customized parameters */}
             <StationInfo /> {/* you should pass data to child component with your own customized parameters */}
           </div>
           
