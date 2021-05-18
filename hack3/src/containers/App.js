@@ -25,24 +25,34 @@ class App extends Component {
       end_station: '',
       distance: -2
     }
+    this.co=[];
   }
-
-  getStations = () => {
+  
+  getStations = async () => {
     // fetch data from database via backend
     // coding here ...
+    const {
+      data: {data},
+    } = await instance.get('/getStations', { });
+    
+    return data;
+    
   }
 
   calculateDistance = async () => {
     // send start and end stations to backend and get distance
     // coding here ...
   }
-
+  componentDidMount(){    
+    var d=this.getStations();
+    this.setState((state) => ({ data: d }));
+  }
   // fetch data here after 1st render
   // coding here ...
-
+ 
   render() {
     let station_info = null
-
+    
     if (!Object.keys(this.state.data).length) {
       return (
         <div className="wrapper">
@@ -50,7 +60,10 @@ class App extends Component {
         </div>
       )
     }
-
+    if(this.state.data["R"]!==undefined) this.co.push("R");
+    if(this.state.data["B"]!==undefined)  this.co.push("B");
+    if(this.state.data["G"]!==undefined)this.co.push("G");
+    if(this.state.data["O"]!==undefined)this.co.push("O");
     return (
       <div className="wrapper">
         <div className="welcome-title"><h1>Welcome to MRT Distance Calculator !</h1></div>
@@ -83,8 +96,8 @@ class App extends Component {
           </div>
 
           <div className="route-graph-info-container">
-            <RouteGraph route_data={{}} /> {/* you should pass data to child component with your own customized parameters */}
-            <RouteGraph route_data={{}} /> {/* you should pass data to child component with your own customized parameters */}
+            <RouteGraph route_data={this.state.data[this.co[0]]} />{/* you should pass data to child component with your own customized parameters */}
+            <RouteGraph route_data={this.state.data[this.co[0]]} /> {/* you should pass data to child component with your own customized parameters */}
             <StationInfo /> {/* you should pass data to child component with your own customized parameters */}
           </div>
           
@@ -93,5 +106,5 @@ class App extends Component {
     )
   }
 }
-
+//{this.state.data["R"].map(x=>this.toclass(x))
 export default App

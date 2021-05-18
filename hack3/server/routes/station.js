@@ -103,6 +103,7 @@ const calculate = (data, start, end) => {
 
 // 1st API
 const GetStations = async (req, res) => {
+  console.log("getstations");
   let data = []
   let result = {}
 
