@@ -24,6 +24,22 @@ class StationInfo extends Component {
           </thead>
           <tbody>
             {
+               <tr>
+                   <td id="table-station_name-label"></td>
+                   <td id="table-station_name-value"></td>
+              </tr>
+              <tr>
+              <td id="table-address-label"></td>
+              <td id="table-address-value"></td>
+              </tr>
+              <tr>
+              <td id="table-service_counter-label"></td>
+              <td id="table-service_counter-value"></td>
+              </tr>
+              <tr>
+              <td id="table-enable_bicycle-label"></td>
+              <td id="table-enable_bicycle-value"></td>
+              </tr>
               // generate multiple
               //   <tr>
               //     <td></td>

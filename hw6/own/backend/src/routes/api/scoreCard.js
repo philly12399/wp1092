@@ -73,8 +73,7 @@ router.get('/query',async function(req,res){
     if (err) throw err
     if(result.length===0){
       s=type+' ('+str+') not found!';  
-      arr.push(s);
-      
+      arr.push(s);      
     }
     else{
       for(let i=0;i<result.length;i++){

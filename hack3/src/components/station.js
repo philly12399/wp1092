@@ -6,7 +6,9 @@ class Station extends Component {
     this.state = {
     }
   }
-
+  ck=()=>{
+    
+  }
   render() {
     var color;
     if(this.props.dd["station_type"] === "G") color ="green"

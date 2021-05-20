@@ -35,7 +35,7 @@ router.get('/guess', (req, res) => {
     if(guessed>number) s="Smaller";
     else if(guessed<number) s="Bigger";
     else if(guessed === number){ s="Equal";  writeLog("end-game");}
-    res.send({ msg: s })
+    res.json({ msg: s })
   }
 })
 
