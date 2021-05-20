@@ -1,5 +1,5 @@
 {
-  "name": "own",
+  "name": "hack3",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
+    "cypress": "^7.3.0",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "moment": "^2.29.1",
+    "mongoose": "^5.12.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -17,10 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "nodemon",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "npx cypress run --spec cypress/integration/public.spec.js",
+    "eject": "react-scripts eject",
+    "server": "nodemon",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -41,10 +44,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
-    "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
     "nodemon": "^2.0.7"
   }
 }
