@@ -1,9 +1,15 @@
 import{ useState } from "react"; 
-const useChat = () => {
-    const[status, setStatus] = useState({}); // { type, msg }
+const useChat = (server,me) => {
     const sendMessage = (payload) => {    
-        console.log(payload);
+        var users=payload.key.split("_");
+        var to= (me===users[0])? users[1]:users[0];
+        var body=payload.body
+        server.sendEvent({
+            type: 'MESSAGE',
+            data: { to: to, name: me, body: body },
+        });
     }; // { key, msg }
-        return{status, sendMessage};
+
+    return{sendMessage};
 };
 export default useChat;

@@ -4,7 +4,11 @@ import ChatRoom from './Containers/ChatRoom'
 import{ useState, useEffect } from "react";
 import {message} from "antd";
 const LOCALSTORAGE_KEY = "save-me";
-const App = () => {
+const server = new WebSocket('ws://localhost:8080');
+server.onopen = () => console.log('Server connected.');
+server.sendEvent = (e) => server.send(JSON.stringify(e));
+const App = () => {   
+  //localStorage.clear();
   const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
   const[signedIn, setSignedIn] = useState(false);
   const[me, setMe] = useState(savedMe || "");
@@ -22,15 +26,17 @@ const App = () => {
           message.error(content)
           break
   }}}  
+
   useEffect(() => {
     if (signedIn) {      
       localStorage.setItem(LOCALSTORAGE_KEY, me);
     }
   }, [signedIn]);
   //useEffect(() => {displayStatus(status)}, [status])
+  
   return(
     <div className="App">
-      {signedIn? (<ChatRoom me={me} displayStatus={displayStatus}/>) : (
+      {signedIn? (<ChatRoom me={me} displayStatus={displayStatus} server={server}/>) : (
       <SignIn 
         me={me} 
         setMe={setMe} 

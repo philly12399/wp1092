@@ -1,21 +1,38 @@
 import{ useState } from "react";
-const useChatBox = () => {
-    const[chatBoxes, setChatBoxes] = useState([
-        { friend: "Mary", key: "MaryChatbox",chatLog: [] },
-        { friend: "Peter", key: "PeterChatBox",chatLog: [] }
-    ]);
-    const createChatBox = (friend,me) => {
+const useChatBox = (displayStatus) => {
+    const[chatBoxes, setChatBoxes] = useState([]);      
+    const createChatBox = (friend,me,log) => {
         const newKey = me <= friend ?`${me}_${friend}` : `${friend}_${me}`;
-        
         if (chatBoxes.some(({ key }) => key === newKey)) {
-            throw new Error(friend +"'s chat box has already opened.");
+            displayStatus({
+                type:"error",
+                msg:friend +"'s chat box has already opened.",
+            })
+            return false;
         }
         const newChatBoxes = [...chatBoxes];
         const chatLog = [];    
-        newChatBoxes.push({ friend, key: newKey, chatLog });    
+        for(var m of log){            
+            var sender=m.name;
+            var to=(sender===me)? friend:me;
+            var body=m.body;
+            chatLog.push({sender:sender, to:to, body:body});
+        }
+        newChatBoxes.push({ friend, key: newKey,msgs:chatLog});
         setChatBoxes(newChatBoxes);    
         return newKey;
     };
+    const addMsg=(key,sender,to,body)=>{
+        //console.log("add"+body);
+        const newChatBoxes = [...chatBoxes];
+        for(var c of newChatBoxes){
+            if(c.key===key){
+               c.msgs.push({sender:sender, to:to, body:body});
+                break;
+            }
+        }
+        setChatBoxes(newChatBoxes);  
+    }
     const removeChatBox = (targetKey,activeKey) => {
         let newActiveKey = activeKey;
         let lastIndex;    
@@ -33,8 +50,6 @@ const useChatBox = () => {
             setChatBoxes(newChatBoxes);    
             return newActiveKey;
     };
-    return{chatBoxes,createChatBox, removeChatBox };
+    return{chatBoxes,createChatBox, removeChatBox,addMsg };
 };
 export default useChatBox;
-
-  
