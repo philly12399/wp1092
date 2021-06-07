@@ -1,5 +1,5 @@
 import"../App.css";
-import{ useState} from "react";
+import{ useState,useEffect} from "react";
 import{ Tabs, Input,Tag} from "antd";
 import ChatModal from "../Components/ChatModal"
 import useChatBox from "../hooks/useChatBox";
@@ -31,8 +31,9 @@ const ChatRoom = ({ me,displayStatus,server }) => {
       //console.log(chatBoxes);    
       //renderMessages();
     };
-    /*const savedCB=JSON.parse(localStorage.getItem(me));
+    const savedCB=JSON.parse(localStorage.getItem(me));
     if(first===true){
+      if(savedCB!==null){
       for(var c of savedCB){
         console.log(c);
         var x=c.split("_");
@@ -41,9 +42,10 @@ const ChatRoom = ({ me,displayStatus,server }) => {
           type: 'CHAT',
           data: { to: name, name: me },
         }); 
-      }     
+      }    
+    } 
       first=false;
-    }*/
+    }
     
     const[messageInput, setMessageInput] = useState("");
     const[modalVisible, setModalVisible] = useState(false);    
@@ -52,13 +54,13 @@ const ChatRoom = ({ me,displayStatus,server }) => {
     const{sendMessage} = useChat(server,me);
     const addChatBox = () => { setModalVisible(true); };
    
-   /* useEffect(() => {
+    useEffect(() => {
       var cc=[];
       for(var c of chatBoxes){
         cc.push(c.key);
       }
       localStorage.setItem(me, JSON.stringify(cc));
-    },[chatBoxes]);*/
+    },[chatBoxes]);
     return(    
         <> <div className="App-title">         
             <h1>{me}'s Chat Room</h1> </div>      
