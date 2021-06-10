@@ -124,6 +124,7 @@ class TodoMain extends Component {
     }
     var oList = this.filtList(this.props.filter);
     var items = oList.map((e) => this.newItem(e.Id, e.Detail, e.checked));
+    console.log(items);
     var hide = "";
     if (this.props.compNum + this.props.todoNum == 0) hide = "none";
     return (
