@@ -2,7 +2,9 @@ import{ useState } from "react";
 const useChatBox = (displayStatus) => {
     const[chatBoxes, setChatBoxes] = useState([]);      
     const createChatBox = (friend,me,log) => {
+       
         const newKey = me <= friend ?`${me}_${friend}` : `${friend}_${me}`;
+        
         if (chatBoxes.some(({ key }) => key === newKey)) {
             displayStatus({
                 type:"error",
@@ -13,12 +15,12 @@ const useChatBox = (displayStatus) => {
         const newChatBoxes = [...chatBoxes];
         const chatLog = [];    
         for(var m of log){            
-            var sender=m.name;
+            var sender=m.sender.name;            
             var to=(sender===me)? friend:me;
             var body=m.body;
             chatLog.push({sender:sender, to:to, body:body});
         }
-        newChatBoxes.push({ friend, key: newKey,msgs:chatLog});
+        newChatBoxes.push({ friend:friend, key: newKey,msgs:chatLog});
         setChatBoxes(newChatBoxes);    
         return newKey;
     };
