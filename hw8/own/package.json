@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cd frontend && yarn start",
-    "server": "cd backend && yarn start"
+    "server": "cd backend && yarn server"
   },
   "dependencies": {
     "axios": "^0.21.1",
