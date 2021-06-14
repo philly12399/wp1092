@@ -1,13 +1,12 @@
 import{ useState } from "react"; 
-const useChat = (server,me) => {
-    const sendMessage = (payload) => {    
+const useChat = (addMSG,me) => {
+    const sendMessage = async (payload) => {  
+        //console.log("send")  ;
         var users=payload.key.split("_");
         var to= (me===users[0])? users[1]:users[0];
         var body=payload.body
-        server.sendEvent({
-            type: 'MESSAGE',
-            data: { to: to, name: me, body: body },
-        });
+        let m=await addMSG({variables:{sender:me,to:to,body:body}});
+        //console.log(m)
     }; // { key, msg }
 
     return{sendMessage};
