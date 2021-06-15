@@ -1,6 +1,7 @@
 const Query = {
-    statsCount(parent, args, {collections,pubsub }, info) {
+    statsCount(parent, args, {db }, info) {
        // console.log(args);
+       var collections=db.people;
        try{
         var s=[];
         for(var l of args.locationKeywords){

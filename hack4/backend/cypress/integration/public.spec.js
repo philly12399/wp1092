@@ -131,7 +131,7 @@ function useValidData() {
 
 
 describe('Hackathon 4 Public Test', () => {
-    it('2-1 query response have correct properties ()', () => {
+   it('2-1 query response have correct properties ()', () => {
         useValidData();
         postToBackend(query)
         .then(res => {
