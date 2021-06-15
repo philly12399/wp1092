@@ -1,0 +1,14 @@
+type Query {
+  statsCount(locationKeywords:[String],severity:Int): [Int!]
+}
+type Person {
+    ssn:String!
+    name:String!
+    severity:Int!
+    location:Location!
+       
+}
+type Location{
+    name:String!
+    description:String!
+}
