@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+
+.TabPane{
+  overflow: scroll;
+  height: 500px;
+}
+.Badge{
+  white-space: pre-wrap;
+}
+
+
+.App-title {
+  margin-top: 5vh;
+  color: rgb(49, 49, 49);
+}
+
+.message-left{
+  margin-left: 20px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.message-right{
+  /* max-width: 500px; */
+  white-space: pre-wrap;
+  /* margin-left: 580px; */
+  margin-right: 20px;
+  text-align: right;
+}
+
+.blank{
+  min-width: 20px;
+}
