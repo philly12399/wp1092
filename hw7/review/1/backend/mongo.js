@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+require('dotenv-defaults').config();
+// i use mongodb://localhost:27017/cardmongo for MONGO_URL
 
 function connectMongo() {
   mongoose.connect(process.env.MONGO_URL, {

@@ -9,8 +9,6 @@ const mongo = require('./mongo');
 
 const app = express();
 
-require('dotenv-defaults').config();
-
 /* -------------------------------------------------------------------------- */
 /*                               MONGOOSE MODELS                              */
 /* -------------------------------------------------------------------------- */
@@ -18,7 +16,8 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   name: { type: String, required: true },
-  chatBoxes: [{ type: mongoose.Types.ObjectId, ref: 'ChatBox' }],
+  chatBoxes:[{type:String}],
+  //chatBoxes: [{ type: mongoose.Types.ObjectId, ref: 'ChatBox' }],
 });
 
 const messageSchema = new Schema({
@@ -70,6 +69,27 @@ const validateChatBox = async (name, participants) => {
     .execPopulate();
 };
 
+const getChatBox = async (name) => {
+  let box = await ChatBoxModel.findOne({ name });
+  return box
+    .populate('users')
+    .populate({ path: 'messages', populate: 'sender' })
+    .execPopulate();
+};
+
+// (async () => {
+//   const a = await validateUser('a');
+//   const b = await validateUser('b');
+
+//   console.log(a);
+
+//   const cbName = makeName('a', 'b');
+
+//   const chatBox = await validateChatBox(cbName, [a, b]);
+
+//   console.log(chatBox);
+// })();
+
 const chatBoxes = {}; // keep track of all open AND active chat boxes
 
 wss.on('connection', function connection(client) {
@@ -80,12 +100,15 @@ wss.on('connection', function connection(client) {
 
   client.on('message', async function incoming(message) {
     message = JSON.parse(message);
-    const { type, payload } = message;
-
+    
+    const { type } = message;
+    
     switch (type) {
       // on open chat box
       case 'CHAT': {
-        const { name, to } = payload;
+        const {
+          data: { name, to },
+        } = message;
 
         const chatBoxName = makeName(name, to);
 
@@ -93,20 +116,22 @@ wss.on('connection', function connection(client) {
         const receiver = await validateUser(to);
         const chatBox = await validateChatBox(chatBoxName, [sender, receiver]);
 
-        // // if client was in a chat box, remove that.
-        // if (chatBoxes[client.box])
-        //   // user was in another chat box
-        //   chatBoxes[client.box].delete(client);
+        // if client was in a chat box, remove that.
+        if (chatBoxes[client.box])
+          // user was in another chat box
+          chatBoxes[client.box].delete(client);
+
+          sender.chatBoxes.push(chatBoxName);
+          await sender.save();
 
         // use set to avoid duplicates
         client.box = chatBoxName;
         if (!chatBoxes[chatBoxName]) chatBoxes[chatBoxName] = new Set(); // make new record for chatbox
         chatBoxes[chatBoxName].add(client); // add this open connection into chat box
-
         client.sendEvent({
           type: 'CHAT',
-          key: chatBoxName,
-          body: {
+          data: {
+            chatBoxName:chatBoxName,
             messages: chatBox.messages.map(({ sender: { name }, body }) => ({
               name,
               body,
@@ -118,25 +143,26 @@ wss.on('connection', function connection(client) {
       }
 
       case 'MESSAGE': {
-        const { name, to, body } = payload;
+        const {
+          data: { name, to, body },
+        } = message;
 
         const chatBoxName = makeName(name, to);
 
         const sender = await validateUser(name);
         const receiver = await validateUser(to);
         const chatBox = await validateChatBox(chatBoxName, [sender, receiver]);
-
+        
         const newMessage = new MessageModel({ sender, body });
         await newMessage.save();
 
         chatBox.messages.push(newMessage);
         await chatBox.save();
-
         chatBoxes[chatBoxName].forEach((client) => {
           client.sendEvent({
             type: 'MESSAGE',
-            key: chatBoxName,
-            body: {
+            data: {
+              chatBoxName:chatBoxName,
               message: {
                 name,
                 body,
@@ -144,6 +170,51 @@ wss.on('connection', function connection(client) {
             },
           });
         });
+      }
+      case "SWITCH":{
+        const {
+          data: { chatBoxName },
+        } = message;
+        const chatBox = await getChatBox(chatBoxName);
+        // if client was in a chat box, remove that.
+        if (chatBoxes[client.box])
+          // user was in another chat box
+          chatBoxes[client.box].delete(client);
+        
+        client.box = chatBoxName;
+        if (!chatBoxes[chatBoxName]) chatBoxes[chatBoxName] = new Set(); // make new record for chatbox
+        chatBoxes[chatBoxName].add(client);
+        client.sendEvent({
+          type: 'SWITCH',
+          data: {
+            chatBoxName:chatBoxName,
+            messages: chatBox.messages.map(({ sender: { name }, body }) => ({
+              name,
+              body,
+            })),
+          },
+        });
+      }
+      case 'INIT':{
+        const {data: { me },} = message;
+        const user= await UserModel.findOne({name:me})
+        let chatBoxes
+        if (user.chatBoxes.length===0) {chatBoxes=[]}
+        else  chatBoxes = await Promise.all(user.chatBoxes.map((box)=> getChatBox(box)), )
+        client.sendEvent({
+          type: 'INIT',
+          data: {
+            me:me,
+            chatBoxes: chatBoxes
+            }
+        });
+      }
+      case 'REMOVE':{
+        const {data: { me,chatBoxName },} = message;
+        let existing = await UserModel.findOne({ name:me })
+        let newChatBoxes=existing.chatBoxes.filter((name)=>name!==chatBoxName)
+        existing.chatBoxes=newChatBoxes
+        await existing.save();
       }
     }
 

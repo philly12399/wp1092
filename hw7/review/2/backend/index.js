@@ -9,6 +9,7 @@ const mongo = require('./mongo');
 
 const app = express();
 
+
 /* -------------------------------------------------------------------------- */
 /*                               MONGOOSE MODELS                              */
 /* -------------------------------------------------------------------------- */
@@ -84,16 +85,20 @@ const validateChatBox = async (name, participants) => {
 const chatBoxes = {}; // keep track of all open AND active chat boxes
 
 wss.on('connection', function connection(client) {
+  console.log("client connected")
+
   client.id = uuid.v4();
+  
+
   client.box = ''; // keep track of client's CURRENT chat box
 
   client.sendEvent = (e) => client.send(JSON.stringify(e));
 
   client.on('message', async function incoming(message) {
     message = JSON.parse(message);
-
-    const { type } = message;
-
+    // console.log(message)
+    const { type } = message;//==const type=message.type
+    // console.log(message.data)
     switch (type) {
       // on open chat box
       case 'CHAT': {
@@ -116,7 +121,7 @@ wss.on('connection', function connection(client) {
         client.box = chatBoxName;
         if (!chatBoxes[chatBoxName]) chatBoxes[chatBoxName] = new Set(); // make new record for chatbox
         chatBoxes[chatBoxName].add(client); // add this open connection into chat box
-
+        // console.log(chatBoxes[client.box].delete(client))
         client.sendEvent({
           type: 'CHAT',
           data: {
@@ -134,7 +139,11 @@ wss.on('connection', function connection(client) {
         const {
           data: { name, to, body },
         } = message;
-
+        // const data=message.data
+        // const name=message.data.name
+        // const to=message.data.to
+        // const body=message.data.body
+        console.log(to)
         const chatBoxName = makeName(name, to);
 
         const sender = await validateUser(name);
@@ -146,8 +155,10 @@ wss.on('connection', function connection(client) {
 
         chatBox.messages.push(newMessage);
         await chatBox.save();
-
+        console.log(chatBoxes)
+        console.log(chatBoxes[chatBoxName])
         chatBoxes[chatBoxName].forEach((client) => {
+          // console.log(client)
           client.sendEvent({
             type: 'MESSAGE',
             data: {
@@ -160,16 +171,20 @@ wss.on('connection', function connection(client) {
         });
       }
     }
-
+    
     // disconnected
     client.once('close', () => {
       chatBoxes[client.box].delete(client);
+      
+
+
     });
+    
   });
 });
 
 mongo.connect();
 
-server.listen(8080, () => {
-  console.log('Server listening at http://localhost:8080');
+server.listen(4000, () => {
+  console.log('Server listening at http://localhost:4000');
 });
