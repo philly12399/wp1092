@@ -1,0 +1,4775 @@
+<html>
+  <head>
+     
+    <link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/twlolstat/media/favicon-152x152.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" defer src="https://donorbox.org/install-popup-button.js"></script>
+    <script>window.DonorBox = { widgetLinkClassName: 'custom-dbox-popup' }</script>
+    <meta name="description" content="提供即時英雄聯盟LOL台服數據分析及戰績查詢。提供英雄路線勝率、出裝順序、符文配置、天梯">
+    <title>彈性積分天梯 - 台服LOL數據網</title>
+
+  </head>
+<body style=" background-color: #EAEAEA; margin: 0px; font-family: Microsoft JhengHei;">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img src="https://storage.googleapis.com/twlolstat/media/TWLOL-w.png"  height="30" alt="twlolstats"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/twstat">遊戲數據</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            聯盟戰棋
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/tft/champions">英雄</a></li>
+            <li><a class="dropdown-item" href="/tft/comps">陣容</a></li>
+            <li><a class="dropdown-item" href="/tft/traits">羈絆</a></li>
+            <li><a class="dropdown-item" href="/tft/items">裝備</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            排行榜
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/leaderboard/solo">單/雙排積分</a></li>
+            <li><a class="dropdown-item" href="/leaderboard/flex">彈性積分</a></li>
+            <li><a class="dropdown-item" href="/leaderboard/tft">聯盟戰棋</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            牌位分佈
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/distribution/solo">單/雙排積分</a></li>
+            <li><a class="dropdown-item" href="/distribution/flex">彈性積分</a></li>
+            <li><a class="dropdown-item" href="/distribution/tft">聯盟戰棋</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/mastery">專精分數</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            即時對戰
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/teammate">查隊友</a></li>
+            <li><a class="dropdown-item" href="/live">即時戰況</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/loltime">遊玩時間</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            站務
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/contact">聯絡我們</a></li>
+            <li><a class="dropdown-item" href="/update">公告及更新</a></li>
+            <li><a class="dropdown-item" href="/status">網站營運狀況</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-dbox-popup" style="color: yellow" aria-current="page" href="https://donorbox.org/lol-10">贊助</a>
+        </li>
+      </ul>
+      <form class="d-flex" action="/summoner/" method="get" autocomplete="off" style="margin-block-end: 0em;">
+        <input class="form-control me-2" name="summoner" type="search" placeholder="召喚師名稱..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" style="width: 70;">搜尋</button>
+      </form>
+    </div>
+  </div>
+</nav>
+ 
+    <main role="main" class="container">
+      <div class="row" style="margin-top: 10px">
+        <h1>彈性積分</h1>
+        <div style="font-size: 10px">
+          更新時間: 2021-06-22 22:00:00
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-hover" style="text-align: center">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" style="text-align: left">召喚師</th>
+              <th scope="col">牌位</th>
+              <th scope="col">LP</th>
+              <th scope="col">等級</th>
+              
+              <th scope="col" colspan=2>勝率</th>
+              
+            </tr>
+          </thead>
+          
+          <tr>
+            <th scope="row">1</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=下一把更苦更難" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/7.png" style="border-radius: 50%; width: 25">
+                <b>下一把更苦更難</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>1988</td>
+            <td>155</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.7%">
+                    502
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.7%)">325
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.7%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">2</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=摘星星的鹿ß" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4568.png" style="border-radius: 50%; width: 25">
+                <b>摘星星的鹿ß</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>918</td>
+            <td>213</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 70.94%">
+                    166
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 70.94%)">68
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              70.94%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">3</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=養貓人" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3457.png" style="border-radius: 50%; width: 25">
+                <b>養貓人</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>898</td>
+            <td>291</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 64.61%">
+                    199
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 64.61%)">109
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              64.61%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">4</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Sarlos" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>Sarlos</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>831</td>
+            <td>451</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 77.63%">
+                    177
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 77.63%)">51
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              77.63%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">5</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=只會闖禍的小皮喵" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1626.png" style="border-radius: 50%; width: 25">
+                <b>只會闖禍的小皮喵</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>789</td>
+            <td>639</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 75.09%">
+                    220
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 75.09%)">73
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              75.09%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">6</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=莉莉的小維尼" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4217.png" style="border-radius: 50%; width: 25">
+                <b>莉莉的小維尼</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>771</td>
+            <td>406</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.92%">
+                    248
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.92%)">140
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.92%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">7</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=你為什麼這麼笨啊" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3867.png" style="border-radius: 50%; width: 25">
+                <b>你為什麼這麼笨啊</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>748</td>
+            <td>705</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.35%">
+                    165
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.35%)">80
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.35%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">8</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=柳橙鹿" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3019.png" style="border-radius: 50%; width: 25">
+                <b>柳橙鹿</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>747</td>
+            <td>419</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 73.74%">
+                    205
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 73.74%)">73
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              73.74%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">9</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=UqianC" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4896.png" style="border-radius: 50%; width: 25">
+                <b>UqianC</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>681</td>
+            <td>520</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.2%">
+                    163
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.2%)">76
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.2%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">10</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=櫻島麻衣的徐小宇" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3795.png" style="border-radius: 50%; width: 25">
+                <b>櫻島麻衣的徐小宇</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>656</td>
+            <td>574</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.67%">
+                    170
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.67%)">85
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">11</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=F1owerBoyZ" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3868.png" style="border-radius: 50%; width: 25">
+                <b>F1owerBoyZ</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>638</td>
+            <td>181</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 70.35%">
+                    121
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 70.35%)">51
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              70.35%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">12</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Kabi2" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4930.png" style="border-radius: 50%; width: 25">
+                <b>Kabi2</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>633</td>
+            <td>565</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 85.71%">
+                    72
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 85.71%)">12
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              85.71%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">13</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=TheBibo" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/542.png" style="border-radius: 50%; width: 25">
+                <b>TheBibo</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>613</td>
+            <td>322</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 69.14%">
+                    121
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 69.14%)">54
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              69.14%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">14</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=我是阿杜" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3838.png" style="border-radius: 50%; width: 25">
+                <b>我是阿杜</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>611</td>
+            <td>406</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.81%">
+                    293
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.81%)">181
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.81%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">15</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=甜甜寶貝" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1625.png" style="border-radius: 50%; width: 25">
+                <b>甜甜寶貝</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>598</td>
+            <td>558</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 73.57%">
+                    167
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 73.57%)">60
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              73.57%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">16</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=打野教科書" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4804.png" style="border-radius: 50%; width: 25">
+                <b>打野教科書</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>576</td>
+            <td>440</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 69.07%">
+                    134
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 69.07%)">60
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              69.07%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">17</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=yo 1313" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4918.png" style="border-radius: 50%; width: 25">
+                <b>yo 1313</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>560</td>
+            <td>89</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.9%">
+                    195
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.9%)">120
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.9%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">18</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=xuee" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>xuee</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>546</td>
+            <td>576</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 71.34%">
+                    117
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 71.34%)">47
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              71.34%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">19</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=織美夢的貓ß" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4501.png" style="border-radius: 50%; width: 25">
+                <b>織美夢的貓ß</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>544</td>
+            <td>355</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 73.29%">
+                    118
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 73.29%)">43
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              73.29%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">20</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=我在兜風" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4679.png" style="border-radius: 50%; width: 25">
+                <b>我在兜風</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>543</td>
+            <td>192</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 82.89%">
+                    63
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 82.89%)">13
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              82.89%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">21</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=與你成為一個世界" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4896.png" style="border-radius: 50%; width: 25">
+                <b>與你成為一個世界</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>540</td>
+            <td>622</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 64.14%">
+                    161
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 64.14%)">90
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              64.14%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">22</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=I_main_Zed" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4961.png" style="border-radius: 50%; width: 25">
+                <b>I_main_Zed</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>534</td>
+            <td>822</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 79.38%">
+                    77
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 79.38%)">20
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              79.38%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">23</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=在劍丘上粉碎最強" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4658.png" style="border-radius: 50%; width: 25">
+                <b>在劍丘上粉碎最強</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>529</td>
+            <td>246</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.9%">
+                    268
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.9%)">203
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.9%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">24</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一顆棒棒糖平天下" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4414.png" style="border-radius: 50%; width: 25">
+                <b>一顆棒棒糖平天下</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>529</td>
+            <td>522</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.18%">
+                    137
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.18%)">70
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.18%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">25</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=OREREREORE" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1626.png" style="border-radius: 50%; width: 25">
+                <b>OREREREORE</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>526</td>
+            <td>299</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.01%">
+                    277
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.01%)">177
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.01%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">26</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=寶貝貓Ø" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>寶貝貓Ø</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>515</td>
+            <td>445</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 79.39%">
+                    104
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 79.39%)">27
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              79.39%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">27</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=但願這場雨不會停" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1625.png" style="border-radius: 50%; width: 25">
+                <b>但願這場雨不會停</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>513</td>
+            <td>877</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 64.39%">
+                    264
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 64.39%)">146
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              64.39%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">28</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=斷夢人" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>斷夢人</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>512</td>
+            <td>224</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.34%">
+                    384
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.34%)">242
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.34%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">29</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=yitingbukeai" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/23.png" style="border-radius: 50%; width: 25">
+                <b>yitingbukeai</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>511</td>
+            <td>194</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 69.23%">
+                    207
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 69.23%)">92
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              69.23%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">30</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=sorrysryjggap" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4831.png" style="border-radius: 50%; width: 25">
+                <b>sorrysryjggap</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>507</td>
+            <td>249</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.9%">
+                    237
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.9%)">107
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.9%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">31</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=LHL1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/75.png" style="border-radius: 50%; width: 25">
+                <b>LHL1</b>
+              </a>        
+            </td>
+            <td>菁英</td>
+            <td>506</td>
+            <td>344</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.01%">
+                    134
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.01%)">69
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.01%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">32</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=楊佑賢" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3797.png" style="border-radius: 50%; width: 25">
+                <b>楊佑賢</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>505</td>
+            <td>394</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 77.02%">
+                    124
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 77.02%)">37
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              77.02%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">33</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=youwe1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3378.png" style="border-radius: 50%; width: 25">
+                <b>youwe1</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>479</td>
+            <td>392</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 78.29%">
+                    119
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 78.29%)">33
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              78.29%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">34</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一道影子" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4241.png" style="border-radius: 50%; width: 25">
+                <b>一道影子</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>478</td>
+            <td>97</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.07%">
+                    113
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.07%)">53
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.07%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">35</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Skateboard_bc" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4858.png" style="border-radius: 50%; width: 25">
+                <b>Skateboard_bc</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>470</td>
+            <td>563</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 74.19%">
+                    69
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 74.19%)">24
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              74.19%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">36</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=cuz1believeº" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4535.png" style="border-radius: 50%; width: 25">
+                <b>cuz1believeº</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>465</td>
+            <td>454</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 70.91%">
+                    78
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 70.91%)">32
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              70.91%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">37</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=CMINGJustOne" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/924.png" style="border-radius: 50%; width: 25">
+                <b>CMINGJustOne</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>446</td>
+            <td>293</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 73.29%">
+                    118
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 73.29%)">43
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              73.29%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">38</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=天使自由泳" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4933.png" style="border-radius: 50%; width: 25">
+                <b>天使自由泳</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>415</td>
+            <td>361</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 74.0%">
+                    111
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 74.0%)">39
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              74.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">39</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=ººººººººººººººº" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4547.png" style="border-radius: 50%; width: 25">
+                <b>ººººººººººººººº</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>393</td>
+            <td>291</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 69.32%">
+                    122
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 69.32%)">54
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              69.32%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">40</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=最怕患得患失" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4872.png" style="border-radius: 50%; width: 25">
+                <b>最怕患得患失</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>389</td>
+            <td>616</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.67%">
+                    110
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.67%)">55
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">41</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=TØ1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4655.png" style="border-radius: 50%; width: 25">
+                <b>TØ1</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>352</td>
+            <td>305</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.64%">
+                    302
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.64%)">213
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.64%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">42</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=ü可悲港仔ü" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4090.png" style="border-radius: 50%; width: 25">
+                <b>ü可悲港仔ü</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>349</td>
+            <td>436</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.28%">
+                    201
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.28%)">127
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.28%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">43</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=HuGoüLaoJZ" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4967.png" style="border-radius: 50%; width: 25">
+                <b>HuGoüLaoJZ</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>319</td>
+            <td>279</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.19%">
+                    195
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.19%)">129
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.19%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">44</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=WCDI_Syuan" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>WCDI_Syuan</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>317</td>
+            <td>103</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.15%">
+                    107
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.15%)">77
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.15%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">45</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=K佬  山頂黑毒蛇" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4021.png" style="border-radius: 50%; width: 25">
+                <b>K佬  山頂黑毒蛇</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>274</td>
+            <td>594</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.0%">
+                    490
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.0%)">385
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">46</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Re3pect" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>Re3pect</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>257</td>
+            <td>497</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.29%">
+                    84
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.29%)">39
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.29%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">47</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Flyday" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3795.png" style="border-radius: 50%; width: 25">
+                <b>Flyday</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>247</td>
+            <td>798</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.82%">
+                    177
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.82%)">114
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.82%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">48</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=張加輝" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3150.png" style="border-radius: 50%; width: 25">
+                <b>張加輝</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>241</td>
+            <td>98</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.45%">
+                    168
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.45%)">101
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.45%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">49</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=SettøHaymaker" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4958.png" style="border-radius: 50%; width: 25">
+                <b>SettøHaymaker</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>226</td>
+            <td>512</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.16%">
+                    138
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.16%)">84
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.16%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">50</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=四月末" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3838.png" style="border-radius: 50%; width: 25">
+                <b>四月末</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>226</td>
+            <td>508</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 73.2%">
+                    71
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 73.2%)">26
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              73.2%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">51</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Ka Young2" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3795.png" style="border-radius: 50%; width: 25">
+                <b>Ka Young2</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>210</td>
+            <td>447</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.9%">
+                    95
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.9%)">61
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.9%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">52</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=together go down" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>together go down</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>209</td>
+            <td>485</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 72.5%">
+                    116
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 72.5%)">44
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              72.5%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">53</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一整個大條" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/7.png" style="border-radius: 50%; width: 25">
+                <b>一整個大條</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>207</td>
+            <td>130</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.48%">
+                    73
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.48%)">42
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.48%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">54</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=指尖躍動的電光" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4661.png" style="border-radius: 50%; width: 25">
+                <b>指尖躍動的電光</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>206</td>
+            <td>644</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.8%">
+                    121
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.8%)">78
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.8%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">55</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Haiiro to Ao" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3861.png" style="border-radius: 50%; width: 25">
+                <b>Haiiro to Ao</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>202</td>
+            <td>352</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.84%">
+                    128
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.84%)">79
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.84%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">56</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=紫豆冰cc" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4660.png" style="border-radius: 50%; width: 25">
+                <b>紫豆冰cc</b>
+              </a>        
+            </td>
+            <td>宗師</td>
+            <td>198</td>
+            <td>321</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.47%">
+                    113
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.47%)">77
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.47%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">57</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=多愁善感小波比ø" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3840.png" style="border-radius: 50%; width: 25">
+                <b>多愁善感小波比ø</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>197</td>
+            <td>93</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.8%">
+                    127
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.8%)">89
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.8%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">58</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=TOPBored" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1298.png" style="border-radius: 50%; width: 25">
+                <b>TOPBored</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>196</td>
+            <td>379</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.92%">
+                    56
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.92%)">33
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.92%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">59</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=線上課程我在睡覺" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>線上課程我在睡覺</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>184</td>
+            <td>431</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.7%">
+                    127
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.7%)">97
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.7%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">60</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=阿Tang" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3458.png" style="border-radius: 50%; width: 25">
+                <b>阿Tang</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>182</td>
+            <td>391</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 64.91%">
+                    111
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 64.91%)">60
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              64.91%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">61</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=MIDQian" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4860.png" style="border-radius: 50%; width: 25">
+                <b>MIDQian</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>178</td>
+            <td>483</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.46%">
+                    118
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.46%)">74
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.46%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">62</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=思眠熏染孤城ö" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4653.png" style="border-radius: 50%; width: 25">
+                <b>思眠熏染孤城ö</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>176</td>
+            <td>500</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 76.0%">
+                    38
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 76.0%)">12
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              76.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">63</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=中路克雷德94猛" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>中路克雷德94猛</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>175</td>
+            <td>347</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.46%">
+                    198
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.46%)">135
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.46%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">64</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=2inzc" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4654.png" style="border-radius: 50%; width: 25">
+                <b>2inzc</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>175</td>
+            <td>646</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 64.33%">
+                    110
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 64.33%)">61
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              64.33%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">65</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Mirababy" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4021.png" style="border-radius: 50%; width: 25">
+                <b>Mirababy</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>172</td>
+            <td>322</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 75.42%">
+                    89
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 75.42%)">29
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              75.42%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">66</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一無是處的我" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1625.png" style="border-radius: 50%; width: 25">
+                <b>一無是處的我</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>168</td>
+            <td>520</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 70.45%">
+                    205
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 70.45%)">86
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              70.45%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">67</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=孤僻軒軒" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4657.png" style="border-radius: 50%; width: 25">
+                <b>孤僻軒軒</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>154</td>
+            <td>606</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.67%">
+                    130
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.67%)">65
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">68</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=隨意門ge門徒" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/904.png" style="border-radius: 50%; width: 25">
+                <b>隨意門ge門徒</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>153</td>
+            <td>253</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.74%">
+                    92
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.74%)">57
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.74%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">69</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=明月照緹幕" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4764.png" style="border-radius: 50%; width: 25">
+                <b>明月照緹幕</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>151</td>
+            <td>278</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 71.13%">
+                    69
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 71.13%)">28
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              71.13%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">70</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=2stca" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4842.png" style="border-radius: 50%; width: 25">
+                <b>2stca</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>151</td>
+            <td>533</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 65.08%">
+                    41
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 65.08%)">22
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              65.08%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">71</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=孫佩宣" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4474.png" style="border-radius: 50%; width: 25">
+                <b>孫佩宣</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>136</td>
+            <td>573</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.52%">
+                    156
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.52%)">120
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.52%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">72</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=DanDan127" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4961.png" style="border-radius: 50%; width: 25">
+                <b>DanDan127</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>131</td>
+            <td>616</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 65.56%">
+                    118
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 65.56%)">62
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              65.56%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">73</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=打贏我的都是外掛" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3507.png" style="border-radius: 50%; width: 25">
+                <b>打贏我的都是外掛</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>131</td>
+            <td>376</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.79%">
+                    53
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.79%)">42
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.79%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">74</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=RnMyTh熊仔ƒ" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4647.png" style="border-radius: 50%; width: 25">
+                <b>RnMyTh熊仔ƒ</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>127</td>
+            <td>485</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.75%">
+                    51
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.75%)">29
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.75%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">75</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Yukiii" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4022.png" style="border-radius: 50%; width: 25">
+                <b>Yukiii</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>119</td>
+            <td>405</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.06%">
+                    57
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.06%)">28
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.06%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">76</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=雷大少2" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1044.png" style="border-radius: 50%; width: 25">
+                <b>雷大少2</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>119</td>
+            <td>522</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 71.83%">
+                    51
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 71.83%)">20
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              71.83%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">77</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=高估自己" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3150.png" style="border-radius: 50%; width: 25">
+                <b>高估自己</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>116</td>
+            <td>175</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.26%">
+                    80
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.26%)">55
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.26%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">78</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=DeanBaron" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3865.png" style="border-radius: 50%; width: 25">
+                <b>DeanBaron</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>115</td>
+            <td>448</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 72.41%">
+                    63
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 72.41%)">24
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              72.41%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">79</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=若你來靠近我的心" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/7.png" style="border-radius: 50%; width: 25">
+                <b>若你來靠近我的心</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>113</td>
+            <td>118</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 78.5%">
+                    84
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 78.5%)">23
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              78.5%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">80</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Äsx" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/2076.png" style="border-radius: 50%; width: 25">
+                <b>Äsx</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>111</td>
+            <td>249</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.68%">
+                    67
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.68%)">32
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.68%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">81</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Boxing Day." style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4970.png" style="border-radius: 50%; width: 25">
+                <b>Boxing Day.</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>108</td>
+            <td>461</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.52%">
+                    143
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.52%)">110
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.52%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">82</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=抱歉我是垃圾" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>抱歉我是垃圾</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>108</td>
+            <td>482</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.04%">
+                    67
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.04%)">41
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.04%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">83</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=緊張我就亂射" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/978.png" style="border-radius: 50%; width: 25">
+                <b>緊張我就亂射</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>107</td>
+            <td>543</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.17%">
+                    176
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.17%)">143
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.17%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">84</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=夏樹妃雨" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4761.png" style="border-radius: 50%; width: 25">
+                <b>夏樹妃雨</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>107</td>
+            <td>492</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 65.0%">
+                    78
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 65.0%)">42
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              65.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">85</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=把你骨灰給你揚了" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4652.png" style="border-radius: 50%; width: 25">
+                <b>把你骨灰給你揚了</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>106</td>
+            <td>470</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.0%">
+                    75
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.0%)">50
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">86</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Tusako OxO" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4453.png" style="border-radius: 50%; width: 25">
+                <b>Tusako OxO</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>106</td>
+            <td>549</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.95%">
+                    53
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.95%)">25
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.95%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">87</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=姐姐他在欺負我" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4895.png" style="border-radius: 50%; width: 25">
+                <b>姐姐他在欺負我</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>103</td>
+            <td>732</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.93%">
+                    165
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.93%)">130
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.93%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">88</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Feice" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4762.png" style="border-radius: 50%; width: 25">
+                <b>Feice</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>101</td>
+            <td>260</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.79%">
+                    138
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.79%)">105
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.79%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">89</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Outta sight hope" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>Outta sight hope</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>100</td>
+            <td>418</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 54.74%">
+                    312
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 54.74%)">258
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              54.74%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">90</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=煞氣a熊貓" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3898.png" style="border-radius: 50%; width: 25">
+                <b>煞氣a熊貓</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>96</td>
+            <td>398</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.9%">
+                    66
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.9%)">50
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.9%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">91</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=AlvaThoreau" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>AlvaThoreau</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>93</td>
+            <td>66</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.84%">
+                    94
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.84%)">58
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.84%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">92</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=反正你也不愛我了" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3018.png" style="border-radius: 50%; width: 25">
+                <b>反正你也不愛我了</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>92</td>
+            <td>450</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.06%">
+                    179
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.06%)">84
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.06%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">93</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Snow用專精達瑞斯" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4960.png" style="border-radius: 50%; width: 25">
+                <b>Snow用專精達瑞斯</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>92</td>
+            <td>600</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.75%">
+                    97
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.75%)">77
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.75%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">94</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=鼻涕獸1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4589.png" style="border-radius: 50%; width: 25">
+                <b>鼻涕獸1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>86</td>
+            <td>387</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.65%">
+                    46
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.65%)">22
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.65%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">95</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=ºMinyi" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1388.png" style="border-radius: 50%; width: 25">
+                <b>ºMinyi</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>84</td>
+            <td>437</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.31%">
+                    81
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.31%)">49
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.31%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">96</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=閃耀星空夜空之劍" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>閃耀星空夜空之劍</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>83</td>
+            <td>520</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.0%">
+                    66
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.0%)">44
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">97</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=我已經雷到" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4786.png" style="border-radius: 50%; width: 25">
+                <b>我已經雷到</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>82</td>
+            <td>148</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.44%">
+                    55
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.44%)">36
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.44%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">98</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=º  SL1DË" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1626.png" style="border-radius: 50%; width: 25">
+                <b>º  SL1DË</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>81</td>
+            <td>380</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.99%">
+                    86
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.99%)">55
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.99%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">99</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=貓貓寶" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1439.png" style="border-radius: 50%; width: 25">
+                <b>貓貓寶</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>81</td>
+            <td>114</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.38%">
+                    63
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.38%)">38
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.38%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">100</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=饒舌海豹頭" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/983.png" style="border-radius: 50%; width: 25">
+                <b>饒舌海豹頭</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>79</td>
+            <td>316</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 53.11%">
+                    111
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 53.11%)">98
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              53.11%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">101</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=何必在乎" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4763.png" style="border-radius: 50%; width: 25">
+                <b>何必在乎</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>79</td>
+            <td>363</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.57%">
+                    41
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.57%)">29
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.57%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">102</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=nishizhu11" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3839.png" style="border-radius: 50%; width: 25">
+                <b>nishizhu11</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>78</td>
+            <td>377</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.63%">
+                    65
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.63%)">44
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.63%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">103</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=被暴打的小鯨魚" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4904.png" style="border-radius: 50%; width: 25">
+                <b>被暴打的小鯨魚</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>76</td>
+            <td>248</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 51.72%">
+                    255
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 51.72%)">238
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              51.72%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">104</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Rwun" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4878.png" style="border-radius: 50%; width: 25">
+                <b>Rwun</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>76</td>
+            <td>444</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 52.92%">
+                    245
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 52.92%)">218
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              52.92%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">105</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Xiaoyan1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4896.png" style="border-radius: 50%; width: 25">
+                <b>Xiaoyan1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>75</td>
+            <td>215</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.39%">
+                    174
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.39%)">124
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.39%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">106</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=盼一宿落櫻ù" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4762.png" style="border-radius: 50%; width: 25">
+                <b>盼一宿落櫻ù</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>74</td>
+            <td>568</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.59%">
+                    117
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.59%)">67
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.59%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">107</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=DkCanyon1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4804.png" style="border-radius: 50%; width: 25">
+                <b>DkCanyon1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>73</td>
+            <td>265</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 72.16%">
+                    70
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 72.16%)">27
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              72.16%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">108</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=若離若即" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4644.png" style="border-radius: 50%; width: 25">
+                <b>若離若即</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>71</td>
+            <td>668</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 57.3%">
+                    51
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 57.3%)">38
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              57.3%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">109</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一時之間ü" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4491.png" style="border-radius: 50%; width: 25">
+                <b>一時之間ü</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>68</td>
+            <td>558</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.47%">
+                    113
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.47%)">77
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.47%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">110</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=馬燁耶" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4404.png" style="border-radius: 50%; width: 25">
+                <b>馬燁耶</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>67</td>
+            <td>392</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.79%">
+                    92
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.79%)">70
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.79%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">111</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=HuGoüHzjzyw" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4928.png" style="border-radius: 50%; width: 25">
+                <b>HuGoüHzjzyw</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>65</td>
+            <td>190</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.78%">
+                    164
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.78%)">115
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.78%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">112</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=HuGoüGan" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3614.png" style="border-radius: 50%; width: 25">
+                <b>HuGoüGan</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>64</td>
+            <td>450</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.27%">
+                    220
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.27%)">171
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.27%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">113</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=許鮭魚之夢" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4895.png" style="border-radius: 50%; width: 25">
+                <b>許鮭魚之夢</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>62</td>
+            <td>544</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 59.73%">
+                    132
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 59.73%)">89
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              59.73%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">114</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Hwaaa" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4561.png" style="border-radius: 50%; width: 25">
+                <b>Hwaaa</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>62</td>
+            <td>297</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 69.23%">
+                    54
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 69.23%)">24
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              69.23%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">115</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Ch1ngqq" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3836.png" style="border-radius: 50%; width: 25">
+                <b>Ch1ngqq</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>62</td>
+            <td>276</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.75%">
+                    44
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.75%)">20
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.75%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">116</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Bo1 zzº" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>Bo1 zzº</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>61</td>
+            <td>241</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.91%">
+                    91
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.91%)">43
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.91%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">117</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=爆爆泥鴨1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4653.png" style="border-radius: 50%; width: 25">
+                <b>爆爆泥鴨1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>60</td>
+            <td>490</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 54.84%">
+                    221
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 54.84%)">182
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              54.84%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">118</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=稚嫩的身體2" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1413.png" style="border-radius: 50%; width: 25">
+                <b>稚嫩的身體2</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>59</td>
+            <td>503</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 71.43%">
+                    45
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 71.43%)">18
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              71.43%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">119</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Zzºº" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4660.png" style="border-radius: 50%; width: 25">
+                <b>Zzºº</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>58</td>
+            <td>65</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.13%">
+                    146
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.13%)">89
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.13%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">120</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=懦夫救星" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3180.png" style="border-radius: 50%; width: 25">
+                <b>懦夫救星</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>58</td>
+            <td>421</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 49.8%">
+                    123
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 49.8%)">124
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              49.8%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">121</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=扶基社副會長" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4663.png" style="border-radius: 50%; width: 25">
+                <b>扶基社副會長</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>50</td>
+            <td>280</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.25%">
+                    147
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.25%)">93
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.25%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">122</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=乖乖躺好很難嗎" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4571.png" style="border-radius: 50%; width: 25">
+                <b>乖乖躺好很難嗎</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>49</td>
+            <td>613</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 53.39%">
+                    244
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 53.39%)">213
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              53.39%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">123</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=嗨我是星凱" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4826.png" style="border-radius: 50%; width: 25">
+                <b>嗨我是星凱</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>48</td>
+            <td>361</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 52.25%">
+                    58
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 52.25%)">53
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              52.25%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">124</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=EDG Viperä" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3542.png" style="border-radius: 50%; width: 25">
+                <b>EDG Viperä</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>47</td>
+            <td>56</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.69%">
+                    125
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.69%)">88
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.69%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">125</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Cause" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>Cause</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>43</td>
+            <td>427</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 52.88%">
+                    101
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 52.88%)">90
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              52.88%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">126</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Tinzz" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>Tinzz</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>42</td>
+            <td>440</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.19%">
+                    92
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.19%)">47
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.19%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">127</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=betteradcwins" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>betteradcwins</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>41</td>
+            <td>622</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.97%">
+                    92
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.97%)">64
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.97%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">128</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=鉤出你心底的名字" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4967.png" style="border-radius: 50%; width: 25">
+                <b>鉤出你心底的名字</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>38</td>
+            <td>322</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 51.4%">
+                    257
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 51.4%)">243
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              51.4%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">129</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=這遊戲沒辦法玩了" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1114.png" style="border-radius: 50%; width: 25">
+                <b>這遊戲沒辦法玩了</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>38</td>
+            <td>283</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.09%">
+                    119
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.09%)">97
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.09%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">130</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=utq" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/23.png" style="border-radius: 50%; width: 25">
+                <b>utq</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>38</td>
+            <td>46</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 68.67%">
+                    57
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 68.67%)">26
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              68.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">131</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=SweaD" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4780.png" style="border-radius: 50%; width: 25">
+                <b>SweaD</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>36</td>
+            <td>250</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 52.06%">
+                    177
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 52.06%)">163
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              52.06%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">132</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=x椎名真白x" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/34.png" style="border-radius: 50%; width: 25">
+                <b>x椎名真白x</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>36</td>
+            <td>102</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.1%">
+                    119
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.1%)">79
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.1%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">133</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=魔 王" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4979.png" style="border-radius: 50%; width: 25">
+                <b>魔 王</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>35</td>
+            <td>512</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 50.16%">
+                    159
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 50.16%)">158
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              50.16%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">134</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=PoPiPa" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>PoPiPa</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>34</td>
+            <td>379</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.42%">
+                    170
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.42%)">121
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.42%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">135</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=sesame1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1437.png" style="border-radius: 50%; width: 25">
+                <b>sesame1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>33</td>
+            <td>446</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.81%">
+                    67
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.81%)">38
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.81%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">136</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=提毛董事長" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4857.png" style="border-radius: 50%; width: 25">
+                <b>提毛董事長</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>28</td>
+            <td>639</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.84%">
+                    212
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.84%)">161
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.84%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">137</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=眾人皆c唯我獨戳" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4893.png" style="border-radius: 50%; width: 25">
+                <b>眾人皆c唯我獨戳</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>28</td>
+            <td>73</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.88%">
+                    126
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.88%)">88
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.88%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">138</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=心態魔術師" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4022.png" style="border-radius: 50%; width: 25">
+                <b>心態魔術師</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>27</td>
+            <td>614</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.67%">
+                    30
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.67%)">15
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">139</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Ying2" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4655.png" style="border-radius: 50%; width: 25">
+                <b>Ying2</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>25</td>
+            <td>588</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 53.91%">
+                    62
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 53.91%)">53
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              53.91%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">140</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Chasy" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4533.png" style="border-radius: 50%; width: 25">
+                <b>Chasy</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>25</td>
+            <td>331</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.33%">
+                    21
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.33%)">15
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.33%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">141</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=YT搜尋Breeze微風" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4804.png" style="border-radius: 50%; width: 25">
+                <b>YT搜尋Breeze微風</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>24</td>
+            <td>218</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 65.62%">
+                    84
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 65.62%)">44
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              65.62%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">142</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=FA LoK1es" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4779.png" style="border-radius: 50%; width: 25">
+                <b>FA LoK1es</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>23</td>
+            <td>414</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.63%">
+                    62
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.63%)">37
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.63%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">143</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=可悲台男007" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1634.png" style="border-radius: 50%; width: 25">
+                <b>可悲台男007</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>22</td>
+            <td>815</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 54.69%">
+                    70
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 54.69%)">58
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              54.69%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">144</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=我叫yako不叫yoko" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4837.png" style="border-radius: 50%; width: 25">
+                <b>我叫yako不叫yoko</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>21</td>
+            <td>577</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 51.71%">
+                    394
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 51.71%)">368
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              51.71%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">145</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=NiMaBi" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4655.png" style="border-radius: 50%; width: 25">
+                <b>NiMaBi</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>21</td>
+            <td>435</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.52%">
+                    79
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.52%)">56
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.52%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">146</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=FLyFLyº" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4552.png" style="border-radius: 50%; width: 25">
+                <b>FLyFLyº</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>20</td>
+            <td>605</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 63.24%">
+                    86
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 63.24%)">50
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              63.24%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">147</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=獅子dog" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>獅子dog</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>18</td>
+            <td>482</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 52.02%">
+                    258
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 52.02%)">238
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              52.02%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">148</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=一週不見如隔七天" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1641.png" style="border-radius: 50%; width: 25">
+                <b>一週不見如隔七天</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>16</td>
+            <td>395</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.56%">
+                    170
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.56%)">136
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.56%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">149</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=小吉啾" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4896.png" style="border-radius: 50%; width: 25">
+                <b>小吉啾</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>15</td>
+            <td>981</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.07%">
+                    194
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.07%)">152
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.07%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">150</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=LuXian" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>LuXian</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>15</td>
+            <td>267</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.49%">
+                    99
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.49%)">62
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.49%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">151</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=need farrn" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4644.png" style="border-radius: 50%; width: 25">
+                <b>need farrn</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>14</td>
+            <td>92</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 86.89%">
+                    53
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 86.89%)">8
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              86.89%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">152</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=我的大招千變萬化" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>我的大招千變萬化</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>13</td>
+            <td>584</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.38%">
+                    89
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.38%)">56
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.38%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">153</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=CHILOK000" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4558.png" style="border-radius: 50%; width: 25">
+                <b>CHILOK000</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>12</td>
+            <td>746</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 53.88%">
+                    111
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 53.88%)">95
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              53.88%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">154</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=台服LOL女去質器" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4928.png" style="border-radius: 50%; width: 25">
+                <b>台服LOL女去質器</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>11</td>
+            <td>246</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 57.4%">
+                    97
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 57.4%)">72
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              57.4%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">155</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=日系_寒" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1395.png" style="border-radius: 50%; width: 25">
+                <b>日系_寒</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>11</td>
+            <td>121</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 72.55%">
+                    37
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 72.55%)">14
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              72.55%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">156</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=去八仙被上點燃" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1625.png" style="border-radius: 50%; width: 25">
+                <b>去八仙被上點燃</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>8</td>
+            <td>393</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.15%">
+                    107
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.15%)">77
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.15%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">157</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=183的矮子" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3840.png" style="border-radius: 50%; width: 25">
+                <b>183的矮子</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>6</td>
+            <td>501</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 62.11%">
+                    118
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 62.11%)">72
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              62.11%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">158</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=迎歲春暖草驚雷" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4021.png" style="border-radius: 50%; width: 25">
+                <b>迎歲春暖草驚雷</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>5</td>
+            <td>462</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 57.69%">
+                    60
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 57.69%)">44
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              57.69%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">159</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=扶基社社長" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4644.png" style="border-radius: 50%; width: 25">
+                <b>扶基社社長</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>4</td>
+            <td>337</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.82%">
+                    160
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.82%)">112
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.82%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">160</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=皮皮的小王子" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4217.png" style="border-radius: 50%; width: 25">
+                <b>皮皮的小王子</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>448</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.45%">
+                    224
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.45%)">180
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.45%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">161</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=社會在走要養條狗" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>社會在走要養條狗</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>398</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 50.66%">
+                    191
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 50.66%)">186
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              50.66%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">162</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=YanJunpeko" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3367.png" style="border-radius: 50%; width: 25">
+                <b>YanJunpeko</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>497</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.3%">
+                    161
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.3%)">106
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.3%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">163</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=üüüü玖üüüü" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4655.png" style="border-radius: 50%; width: 25">
+                <b>üüüü玖üüüü</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>552</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 55.0%">
+                    154
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 55.0%)">126
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              55.0%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">164</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=CatslaveVladimir" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>CatslaveVladimir</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>378</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 57.89%">
+                    132
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 57.89%)">96
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              57.89%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">165</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=挖掘機老大1" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4928.png" style="border-radius: 50%; width: 25">
+                <b>挖掘機老大1</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>272</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.09%">
+                    79
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.09%)">57
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.09%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">166</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=又怎麼了美女" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3901.png" style="border-radius: 50%; width: 25">
+                <b>又怎麼了美女</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>51</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 67.54%">
+                    77
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 67.54%)">37
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              67.54%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">167</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=沒人理解的偽裝" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4804.png" style="border-radius: 50%; width: 25">
+                <b>沒人理解的偽裝</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>496</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 66.67%">
+                    64
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 66.67%)">32
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              66.67%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">168</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=賽勒瑟" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4904.png" style="border-radius: 50%; width: 25">
+                <b>賽勒瑟</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>372</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.76%">
+                    63
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.76%)">39
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.76%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">169</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=鎬泰吉" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3542.png" style="border-radius: 50%; width: 25">
+                <b>鎬泰吉</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>1</td>
+            <td>52</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 70.11%">
+                    61
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 70.11%)">26
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              70.11%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">170</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Regret小潘" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4903.png" style="border-radius: 50%; width: 25">
+                <b>Regret小潘</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>500</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 50.54%">
+                    376
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 50.54%)">368
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              50.54%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">171</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=HuGoüshuiwu" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4568.png" style="border-radius: 50%; width: 25">
+                <b>HuGoüshuiwu</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>406</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.33%">
+                    222
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.33%)">146
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.33%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">172</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=ºPenni" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1387.png" style="border-radius: 50%; width: 25">
+                <b>ºPenni</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>644</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 60.55%">
+                    155
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 60.55%)">101
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              60.55%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">173</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=KaMinG" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4031.png" style="border-radius: 50%; width: 25">
+                <b>KaMinG</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>304</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 57.14%">
+                    128
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 57.14%)">96
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              57.14%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">174</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=小妹會仰式嘛" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/7.png" style="border-radius: 50%; width: 25">
+                <b>小妹會仰式嘛</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>196</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.6%">
+                    126
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.6%)">89
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.6%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">175</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=欲加之罪何患無辭" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4418.png" style="border-radius: 50%; width: 25">
+                <b>欲加之罪何患無辭</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>467</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 58.22%">
+                    124
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 58.22%)">89
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              58.22%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">176</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Snnan" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/4896.png" style="border-radius: 50%; width: 25">
+                <b>Snnan</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>557</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 54.15%">
+                    124
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 54.15%)">105
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              54.15%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">177</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=絕心426" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/29.png" style="border-radius: 50%; width: 25">
+                <b>絕心426</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>366</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 56.4%">
+                    97
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 56.4%)">75
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              56.4%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">178</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=Ü1Ü" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/1666.png" style="border-radius: 50%; width: 25">
+                <b>Ü1Ü</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>330</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.54%">
+                    80
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.54%)">50
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.54%
+            </td>
+          </tr>
+            
+          
+          <tr>
+            <th scope="row">179</th>          
+            <td style="text-align: left">
+              <a href="/summoner/?summoner=梧桐鎖深秋" style="text-decoration: none; color: black">
+                <img src="http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/3006.png" style="border-radius: 50%; width: 25">
+                <b>梧桐鎖深秋</b>
+              </a>        
+            </td>
+            <td>大師</td>
+            <td>0</td>
+            <td>87</td>
+            <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 61.43%">
+                    43
+                  </div>
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: calc(100% - 61.43%)">27
+                  </div>
+              </div>
+            </td>
+            <td width=60>
+              61.43%
+            </td>
+          </tr>
+            
+          
+        </table>
+      </div>
+    </main>
+
+</body>
+</html>

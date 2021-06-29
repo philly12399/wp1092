@@ -1,0 +1,12 @@
+{
+    "champion": "Yasuo",
+    "match_num": 100,
+    "win_rate": 0.59,
+    "kill": 10.8,
+    "death": 8.1,
+    "assist": 1.2,
+    "kda": 1.5,
+    "damage": 21000,
+    "gold": 20000,
+    "minion": 450
+}

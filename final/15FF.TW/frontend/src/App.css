@@ -1,0 +1,445 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 1450px;
+  margin: auto;
+}
+
+.App-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-title h1 {
+  margin: 0;
+  margin-right: 20px;
+  font-size: 3em;
+}
+
+.Select-Pad {
+  width: 50%;
+  height: 300px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+  font-family: 'FangSong';
+}
+
+.Select-Pad Button {
+  width: 300px;
+  height: 80px;
+  background-color:rgb(49, 3, 3);
+  color: white;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.Last10Match-Main {
+  width: 1500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Last10Match-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Last10Match-Header {
+  width: 80%;
+  height: 50px;
+  background: rgb(49, 3, 3);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Last10Match-Avg-Pad {
+  width: 50%;
+  height: 500px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.Last10Match-Avg-Table {
+  width: 100%; 
+  height: 100%;
+  background: rgba(255, 255, 255, 0.486);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Last10MatchAvg-Table-Top {
+  width: 100%;
+  height: 60%;
+  margin: 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Last10MatchAvg-Table-KDA {
+  width: 100%;
+  height: 90%;
+  background: white;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Last10MatchAvg-Table-Bottom {
+  width: 100%;
+  height: 40%;
+  margin-top: 0px;
+  padding: 20px;
+  background-color: rgb(49, 3, 3);
+  border-radius: 20px;
+}
+
+.Last10Match-Pad {
+  width: 80%;
+  height: 600px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.Last10Match-Table {
+  width: 100%;
+  margin-top: 0px;
+  padding: 30px;
+  background-color: rgb(49, 3, 3);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.HeroStatistic-Main {
+  width: 1500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.HeroStatistic-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.HeroStatistic-Header {
+  width: 50%;
+  height: 50px;
+  background: rgb(49, 3, 3);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.HeroStatistic-Search {
+  display: flex;
+  margin: 0;
+  margin-left: 11em;
+  padding: 0;
+  width: 12em;
+  margin-top: 3px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.HeroStatistic-Pad-Compare {
+  width: 50%;
+  height: 600px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.HeroStatistic-Table-Compare {
+  width: 100%; 
+  height: 100%;
+  background: rgba(255, 255, 255, 0.486);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.HeroStatistic-Pad {
+  width: 50%;
+  height: 500px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.HeroStatistic-Table {
+  width: 100%; 
+  height: 100%;
+  background: rgba(255, 255, 255, 0.486);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.HeroStatistic-Table-Top {
+  width: 100%;
+  height: 60%;
+  margin: 0px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.HeroStatistic-Table-KDA {
+  width: 80%;
+  height: 95%;
+  background: white;
+  margin-left: 30px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.HeroStatistic-Table-Bottom {
+  width: 100%;
+  height: 40%;
+  margin-top: 0px;
+  padding: 20px;
+  background-color: rgb(49, 3, 3);
+  border-radius: 20px;
+  
+}
+
+.HeroVSHero-Main {
+  width: 1500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.HeroVSHero-Pad {
+  width: 50%;
+  height: 600px;
+  background: #eeeeee52;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.HeroVSHero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.HeroVSHero-title h1 {
+  margin: 0;
+  margin-right: 20px;
+  font-size: 2em;
+}
+
+.HeroVSHero-Header {
+  width: 50%;
+  height: 50px;
+  background: rgb(49, 3, 3);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.HeroVSHero-Table {
+  width: 100%; 
+  height: 100%;
+  background: rgba(255, 255, 255, 0.486);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.HeroVSHero-Table-Top {
+  width: 100%;
+  height: 40%;
+  margin: 0px;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.HeroVSHero-Top-MiddlePad {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.HeroVSHero-NameTag {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Impact, fantasy;
+}
+
+.HeroVSHero-WinRate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+
+.HeroVSHero-Table-Bottom {
+  width: 100%;
+  height: 60%;
+  margin-top: 0px;
+  padding: 20px;
+  background-color: rgb(49, 3, 3);
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.HeroSearch {
+  display: flex;
+  margin: 0;
+  margin-left: 3em;
+  padding: 0;
+  width: 12em;
+  margin-top: 3px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.HomePage-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.HomePage-Bottom {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.WebUsage-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.WebUsage-Pad {
+  width: 50%;
+  height: 300px;
+  background: #eeeeeeb2;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 25px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  font-size: 20px;
+  font-family: 'FangSong';
+}
+
+.WebUsage-Bottom {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 50%;
+  height: 35px;
+  background-color: rgb(49, 3, 3);
+  border-radius: 10px;
+}
