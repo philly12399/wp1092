@@ -1,6 +1,7 @@
 const Query = {
     statsCount(parent, args, {db }, info) {
-       // console.log(args);
+        console.log("get q");
+        //console.log(args);
        var collections=db.people;
        try{
         var s=[];
@@ -28,7 +29,7 @@ const Query = {
             }}
             s.push(b.length);
         }   
-        //console.log(s);
+        console.log(s);
         return s;
     }
     catch(e){return null;}

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import papaparse from 'papaparse';
-
 import "./Uploader.css"
 
 
@@ -53,8 +52,13 @@ export default function Uploader(props) {
 
     const { mutation } = props;
     // TODO 
+    
     // write an onSubmitData that calls the mutation function 
-    const onSubmitData = () => {}
+    const onSubmitData = (data) => {
+        //console.log(data);
+        for(var d of data)
+            mutation(d);
+    }
 
     // DO NOT MODIFY BELOW THIS LINE 
     const headers = rawData.length > 0 ? Object.keys(rawData[0]) : [];

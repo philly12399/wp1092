@@ -1,6 +1,8 @@
 const Mutation = {
   insertPeople(parent, args, { db }, info) {
       var collections=db.people;
+      console.log("get mut")
+      console.log(args)
     try{
     for(var p of args.data){
        // console.log("l="+collections.length)
